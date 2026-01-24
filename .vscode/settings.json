@@ -1,4 +1,19 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "cSpell.words": [
+    "CFTC",
+    "Dominence",
+    "dotenv",
+    "FOMC",
+    "genai",
+    "Grayscale",
+    "Neue",
+    "Oikonomos",
+    "tavily"
+  ],
+  "python.defaultInterpreterPath": "./automation/venv/Scripts/python.exe",
+  "python.analysis.extraPaths": [
+    "./automation"
+  ]
 }
