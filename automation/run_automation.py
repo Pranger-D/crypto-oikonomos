@@ -114,7 +114,7 @@ title: '시장 브리핑: 오늘의 크립토 인사이트 ({today_str})'
 date: '{today_str}'
 tags: ['Macro', 'Crypto', 'Insight']
 draft: true
-summary: '{summary_text}'
+summary: {summary_text}
 ---
 
 {blog_body}
