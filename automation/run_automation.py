@@ -118,7 +118,7 @@ def save_to_blog():
         mdx_content = f"""---
 title: '시장 브리핑: 오늘의 크립토 인사이트 ({today_str})'
 date: '{today_str}'
-tags: ['Macro', 'Crypto', 'Insight']
+tags: ['Briefing']
 draft: true
 summary: {summary_text}
 ---
