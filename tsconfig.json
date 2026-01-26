@@ -40,7 +40,12 @@
     "**/*.json",
     ".contentlayer/generated",
     ".contentlayer/generated/**/*.json",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "app",
+    "components",
+    "data",
+    "layouts",
+    "scripts"
   ],
   "exclude": ["node_modules"]
 }

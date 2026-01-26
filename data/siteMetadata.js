@@ -6,8 +6,8 @@ const siteMetadata = {
   description: 'Investment notes of a steward wisely managing entrusted capital',
   language: 'ko-KR',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://money-mindset.vercel.app',
-  siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
+  siteUrl: 'https://crypto-oikonomos.vercel.app',
+  siteRepo: 'https://github.com/Pranger-D/crypto-oikonomos',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   mastodon: 'https://mastodon.social/@mastodonuser',
