@@ -3,7 +3,6 @@ import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog, Authors } from 'contentlayer/generated'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
-import SectionContainer from '@/components/SectionContainer'
 import Image from '@/components/Image'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
@@ -27,91 +26,102 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
   const sortedPosts = sortPosts(allBlogs)
   const targetCategories = ['Briefing', 'Insight', 'Study']
   
+  // 이미지: 없으면 기본 이미지
   const displayImage = content.images && content.images[0] ? content.images[0] : '/static/images/twitter-card.png'
 
   return (
-    <div className="bg-[#F9FAFB] min-h-screen">
+    // [Layout Fix 1] 배경색 전략 변경
+    // 모바일(기본): 흰색(bg-white) -> 글자가 꽉 차게 보임
+    // PC(lg 이상): 회색(bg-gray-50) -> 카드시스템 적용
+    <div className="bg-white lg:bg-gray-50 min-h-screen">
+      
+      {/* 진행률 표시줄 */}
       <ScrollProgressBar />
 
-      {/* [Design Fix 1] 레이아웃 너비를 max-w-7xl로 확장하여 여유 공간 확보 
-         기존 max-w-6xl -> max-w-7xl
-      */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 xl:px-8">
+      {/* [Layout Fix 2] SectionContainer 제거하고 직접 너비 통제 */}
+      {/* max-w-[1440px]로 더 넓게 잡아서 사이드바 공간 확보 */}
+      <div className="mx-auto max-w-[1440px] px-0 lg:px-6 xl:px-12">
         <ScrollTopAndComment />
         
-        {/* [Design Fix 2] gap-x-24 (96px)로 설정하여 본문과 사이드바를 확실하게 분리 
-           기존 gap-x-12 -> gap-x-24
-        */}
-        <div className="py-12 xl:grid xl:grid-cols-12 xl:gap-x-24">
+        {/* 그리드 시스템 */}
+        <div className="lg:grid lg:grid-cols-12 lg:gap-12 lg:py-12">
           
           {/* =========================================
-              [Left Column] 메인 콘텐츠 영역 (8.5칸 차지 - 더 넓게)
-              기존 col-span-8 -> col-span-9에 가깝게 조정
+              [Left Column] 메인 콘텐츠 (하얀색 카드)
+              - 모바일: 카드 느낌 없음, 전체 너비 사용
+              - PC: 하얀색 박스(shadow) 안에 글이 들어감
           ========================================= */}
-          <div className="xl:col-span-9">
+          <main className="lg:col-span-8 xl:col-span-9 bg-white lg:rounded-3xl lg:shadow-sm lg:border lg:border-gray-100 lg:p-12 p-5 pt-10">
             <article>
-              <header className="mb-10 space-y-6">
+              <header className="mb-8 lg:mb-10 space-y-6">
                 <div className="space-y-3">
-                  <div className="text-sm font-medium text-gray-500">
+                  <div className="flex items-center gap-3 text-sm font-medium text-gray-500">
                     <time dateTime={date}>
                       {formatDate(date, siteMetadata.locale)}
                     </time>
+                    {/* 모바일에서만 보이는 태그 (PC는 사이드바에 있으므로) */}
+                    {tags && (
+                       <span className="lg:hidden text-primary-500 font-bold">#{tags[0]}</span>
+                    )}
                   </div>
-                  {/* 제목 크기 조정: 너무 크지 않게 밸런스 조절 */}
-                  <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-5xl">
+                  <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
                     {title}
                   </h1>
                 </div>
                 {/* 구분선 */}
-                <div className="h-[1px] w-full bg-gray-300" />
+                <div className="h-[1px] w-full bg-gray-200" />
               </header>
 
-              <div className="mb-12 overflow-hidden rounded-xl shadow-sm border border-gray-100">
-                 <div className="relative aspect-[2/1] w-full">
+              {/* 고정 이미지 */}
+              <div className="mb-10 lg:mb-12 overflow-hidden rounded-xl bg-gray-100">
+                 <div className="relative aspect-[16/9] w-full">
                    <Image 
                      src={displayImage}
                      alt={title}
                      fill
-                     className="object-cover"
+                     className="object-cover transition-transform duration-500 hover:scale-105"
                      priority
                    />
                  </div>
               </div>
 
-              <div className="prose max-w-none text-lg leading-8 text-gray-800 dark:text-gray-300">
+              {/* 본문 */}
+              {/* prose-lg로 글자 크기 키움 + 모바일 좌우 여백 확보 */}
+              <div className="prose prose-lg max-w-none text-gray-800 dark:text-gray-300 leading-8">
                 {children}
               </div>
             </article>
 
-            {/* Navigation */}
+            {/* 하단 네비게이션 (이전/다음 글) */}
             {(next || prev) && (
-              <div className="mt-16 flex justify-between border-t border-gray-200 py-10">
+              <div className="mt-16 flex flex-col gap-6 border-t border-gray-100 pt-10 sm:flex-row sm:justify-between">
                 {prev && (
-                  <div className="text-left max-w-[45%]">
-                    <div className="text-xs uppercase tracking-wide text-gray-500 mb-2">Previous Article</div>
-                    <div className="text-base text-primary-500 hover:text-primary-600 font-bold leading-snug">
-                      <Link href={`/${prev.path}`}>{prev.title}</Link>
-                    </div>
+                  <div className="flex flex-col items-start text-left sm:w-1/2">
+                    <span className="text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Previous</span>
+                    <Link href={`/${prev.path}`} className="text-lg font-bold text-gray-900 hover:text-primary-500 leading-snug">
+                      {prev.title}
+                    </Link>
                   </div>
                 )}
                 {next && (
-                  <div className="text-right max-w-[45%]">
-                    <div className="text-xs uppercase tracking-wide text-gray-500 mb-2">Next Article</div>
-                    <div className="text-base text-primary-500 hover:text-primary-600 font-bold leading-snug">
-                      <Link href={`/${next.path}`}>{next.title}</Link>
-                    </div>
+                  <div className="flex flex-col items-end text-right sm:w-1/2">
+                    <span className="text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Next</span>
+                    <Link href={`/${next.path}`} className="text-lg font-bold text-gray-900 hover:text-primary-500 leading-snug">
+                      {next.title}
+                    </Link>
                   </div>
                 )}
               </div>
             )}
-          </div>
+          </main>
 
           {/* =========================================
-              [Right Column] 사이드바 영역 (3.5칸 차지)
-              "회색 박스 밖" 느낌을 위해 오른쪽 끝으로 밀착
+              [Right Column] 사이드바 (투명 배경)
+              - 모바일: 숨김 (Hidden) -> 글 읽기에 집중
+              - PC: 하얀색 박스 밖(회색 배경 위)에 둥둥 떠있음
           ========================================= */}
-          <aside className="hidden xl:block xl:col-span-3">
-            <div className="sticky top-32 space-y-12">
+          <aside className="hidden lg:block lg:col-span-4 xl:col-span-3">
+            <div className="sticky top-24 space-y-12 pl-4">
               
               {targetCategories.map((category) => {
                 const categoryPosts = sortedPosts
@@ -120,26 +130,23 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
 
                 return (
                   <div key={category} className="group">
-                    {/* [Design Fix 3] 카테고리 타이틀 디자인
-                       text-sm (14px) + Bold
-                    */}
-                    <div className="flex items-center gap-3 mb-5 border-l-2 border-primary-500 pl-3">
-                      <h3 className="text-sm font-bold uppercase tracking-widest text-gray-900">
+                    {/* 카테고리 타이틀 (회색 배경 위에 바로 글씨) */}
+                    <div className="flex items-center justify-between mb-5 border-b border-gray-200 pb-2">
+                      <h3 className="text-sm font-black uppercase tracking-widest text-gray-400 group-hover:text-gray-900 transition-colors">
                         {category}
                       </h3>
+                      <span className="text-[10px] bg-white px-2 py-0.5 rounded-full text-gray-400 border border-gray-100 shadow-sm">
+                        {categoryPosts.length} posts
+                      </span>
                     </div>
                     
                     {categoryPosts.length > 0 ? (
-                      <ul className="space-y-3 pl-3.5 border-l border-gray-100">
+                      <ul className="space-y-4">
                         {categoryPosts.map((post) => (
                           <li key={post.slug}>
-                            <Link href={`/blog/${post.slug}`} className="group/item block py-1">
-                              {/* [Design Fix 4] 글 제목 디자인
-                                 text-xs (12px) - 카테고리보다 작게 (요청사항 반영)
-                                 font-medium - 너무 얇지 않게 가독성 확보
-                                 text-gray-500 -> hover: gray-900
-                              */}
-                              <h4 className="text-xs font-medium text-gray-500 transition-colors group-hover/item:text-gray-900 group-hover/item:underline decoration-1 underline-offset-4 leading-relaxed">
+                            <Link href={`/blog/${post.slug}`} className="group/item block">
+                              {/* 글 제목: 카테고리보다 작게, 하지만 명확하게 */}
+                              <h4 className="text-[13px] font-medium text-gray-600 transition-colors group-hover/item:text-primary-600 leading-relaxed hover:underline decoration-1 underline-offset-4">
                                 {post.title}
                               </h4>
                             </Link>
@@ -147,7 +154,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                         ))}
                       </ul>
                     ) : (
-                      <p className="pl-3 text-xs text-gray-300 italic">No updates.</p>
+                      <p className="text-xs text-gray-400 italic">No updates.</p>
                     )}
                   </div>
                 )
