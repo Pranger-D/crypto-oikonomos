@@ -173,3 +173,32 @@ input:-webkit-autofill:focus {
   display: inline-block;
   vertical-align: middle;
 }
+
+/* =========================================
+   [Custom Typography for PostLayout] 
+   맨 아래에 추가하여 기존 설정을 덮어씁니다.
+   ========================================= */
+.prose h1, .prose h2, .prose h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-gray-900); /* 테마 색상 변수 활용 */
+  margin-top: 2.5em;
+}
+  
+.prose p {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  line-height: 1.8;
+  color: var(--color-gray-700);
+}
+  
+.prose a {
+  color: var(--color-primary-500);
+  text-decoration: none;
+  font-weight: 600;
+}
+  
+.prose a:hover {
+  text-decoration: underline;
+  color: var(--color-primary-600);
+}
