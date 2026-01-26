@@ -86,7 +86,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                   <div className="text-left">
                     <div className="text-xs uppercase tracking-wide text-gray-500">Previous Article</div>
                     <div className="mt-1 text-primary-500 hover:text-primary-600 font-medium">
-                      <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
+                      <Link href={`/${prev.path}`}>{prev.title}</Link>
                     </div>
                   </div>
                 )}
@@ -94,7 +94,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                   <div className="text-right">
                     <div className="text-xs uppercase tracking-wide text-gray-500">Next Article</div>
                     <div className="mt-1 text-primary-500 hover:text-primary-600 font-medium">
-                      <Link href={`/blog/${next.slug}`}>{next.title}</Link>
+                      <Link href={`/${next.path}`}>{next.title}</Link>
                     </div>
                   </div>
                 )}
