@@ -26,75 +26,73 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
   const sortedPosts = sortPosts(allBlogs)
   const targetCategories = ['Briefing', 'Insight', 'Study']
   
-  // 이미지: 없으면 기본 이미지
   const displayImage = content.images && content.images[0] ? content.images[0] : '/static/images/twitter-card.png'
 
   return (
-    // [Layout Fix 1] 배경색 전략 변경
-    // 모바일(기본): 흰색(bg-white) -> 글자가 꽉 차게 보임
-    // PC(lg 이상): 회색(bg-gray-50) -> 카드시스템 적용
-    <div className="bg-white lg:bg-gray-50 min-h-screen">
-      
-      {/* 진행률 표시줄 */}
+    // 전체 페이지 컨테이너
+    <div className="min-h-screen bg-white">
       <ScrollProgressBar />
+      <ScrollTopAndComment />
 
-      {/* [Layout Fix 2] SectionContainer 제거하고 직접 너비 통제 */}
-      {/* max-w-[1440px]로 더 넓게 잡아서 사이드바 공간 확보 */}
-      <div className="mx-auto max-w-[1440px] px-0 lg:px-6 xl:px-12">
-        <ScrollTopAndComment />
+      {/* [Layout Strategy] 
+         PC: 좌측(회색) / 우측(흰색)으로 화면 분할 (Grid)
+         Mobile: 전체 흰색, 블록 쌓기 (Block)
+      */}
+      <div className="lg:flex w-full">
         
-        {/* 그리드 시스템 */}
-        <div className="lg:grid lg:grid-cols-12 lg:gap-12 lg:py-12">
-          
-          {/* =========================================
-              [Left Column] 메인 콘텐츠 (하얀색 카드)
-              - 모바일: 카드 느낌 없음, 전체 너비 사용
-              - PC: 하얀색 박스(shadow) 안에 글이 들어감
-          ========================================= */}
-          <main className="lg:col-span-8 xl:col-span-9 bg-white lg:rounded-3xl lg:shadow-sm lg:border lg:border-gray-100 lg:p-12 p-5 pt-10">
+        {/* =========================================
+            [Left Column] 메인 콘텐츠 영역 (회색 배경)
+            - PC: w-[75%] (화면의 3/4), 회색 배경
+            - Mobile: w-full, 흰색 배경
+        ========================================= */}
+        <main className="w-full lg:w-[75%] bg-white lg:bg-[#F3F4F6] min-h-screen">
+          {/* 콘텐츠 내부 여백 컨테이너 */}
+          {/* 모바일: px-4 (여백 최소화), PC: px-16 ~ px-32 (중앙 정렬 느낌) */}
+          <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-12 lg:py-20 xl:px-24">
+            
             <article>
-              <header className="mb-8 lg:mb-10 space-y-6">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-sm font-medium text-gray-500">
+              <header className="mb-8 lg:mb-12 space-y-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-sm font-bold text-gray-500">
                     <time dateTime={date}>
                       {formatDate(date, siteMetadata.locale)}
                     </time>
-                    {/* 모바일에서만 보이는 태그 (PC는 사이드바에 있으므로) */}
                     {tags && (
-                       <span className="lg:hidden text-primary-500 font-bold">#{tags[0]}</span>
+                       <span className="lg:hidden text-primary-500">#{tags[0]}</span>
                     )}
                   </div>
-                  <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
+                  {/* 제목 크기 및 자간 조절 */}
+                  <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-4xl md:text-5xl lg:text-[3.5rem]">
                     {title}
                   </h1>
                 </div>
-                {/* 구분선 */}
-                <div className="h-[1px] w-full bg-gray-200" />
+                {/* 구분선 (PC에서는 진하게, 모바일은 연하게) */}
+                <div className="h-[1px] w-full bg-gray-200 lg:bg-gray-300" />
               </header>
 
               {/* 고정 이미지 */}
-              <div className="mb-10 lg:mb-12 overflow-hidden rounded-xl bg-gray-100">
+              <div className="mb-10 lg:mb-16 overflow-hidden rounded-lg lg:rounded-2xl bg-gray-200 shadow-sm">
                  <div className="relative aspect-[16/9] w-full">
                    <Image 
                      src={displayImage}
                      alt={title}
                      fill
-                     className="object-cover transition-transform duration-500 hover:scale-105"
+                     className="object-cover"
                      priority
                    />
                  </div>
               </div>
 
-              {/* 본문 */}
-              {/* prose-lg로 글자 크기 키움 + 모바일 좌우 여백 확보 */}
-              <div className="prose prose-lg max-w-none text-gray-800 dark:text-gray-300 leading-8">
+              {/* 본문 (Typography) */}
+              {/* 모바일 가독성을 위해 break-words 추가 */}
+              <div className="prose prose-lg max-w-none break-keep text-gray-800 dark:text-gray-300 leading-8 lg:leading-9">
                 {children}
               </div>
             </article>
 
-            {/* 하단 네비게이션 (이전/다음 글) */}
+            {/* 하단 네비게이션 */}
             {(next || prev) && (
-              <div className="mt-16 flex flex-col gap-6 border-t border-gray-100 pt-10 sm:flex-row sm:justify-between">
+              <div className="mt-16 flex flex-col gap-8 border-t border-gray-200 lg:border-gray-300 pt-10 sm:flex-row sm:justify-between">
                 {prev && (
                   <div className="flex flex-col items-start text-left sm:w-1/2">
                     <span className="text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Previous</span>
@@ -113,16 +111,18 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                 )}
               </div>
             )}
-          </main>
+          </div>
+        </main>
 
-          {/* =========================================
-              [Right Column] 사이드바 (투명 배경)
-              - 모바일: 숨김 (Hidden) -> 글 읽기에 집중
-              - PC: 하얀색 박스 밖(회색 배경 위)에 둥둥 떠있음
-          ========================================= */}
-          <aside className="hidden lg:block lg:col-span-4 xl:col-span-3">
-            <div className="sticky top-24 space-y-12 pl-4">
-              
+        {/* =========================================
+            [Right Column] 사이드바 영역 (흰색 배경)
+            - PC: w-[25%] (화면의 1/4), 흰색 배경, 왼쪽 경계선
+            - Mobile: Hidden (숨김)
+        ========================================= */}
+        <aside className="hidden lg:block lg:w-[25%] bg-white border-l border-gray-100">
+          <div className="sticky top-0 h-screen overflow-y-auto px-8 py-20">
+            
+            <div className="space-y-16">
               {targetCategories.map((category) => {
                 const categoryPosts = sortedPosts
                   .filter(p => p.tags.some(t => t.toUpperCase() === category.toUpperCase()) && p.slug !== slug)
@@ -130,23 +130,20 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
 
                 return (
                   <div key={category} className="group">
-                    {/* 카테고리 타이틀 (회색 배경 위에 바로 글씨) */}
-                    <div className="flex items-center justify-between mb-5 border-b border-gray-200 pb-2">
-                      <h3 className="text-sm font-black uppercase tracking-widest text-gray-400 group-hover:text-gray-900 transition-colors">
+                    {/* 카테고리 타이틀 */}
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="h-2 w-2 rounded-full bg-primary-500" />
+                      <h3 className="text-sm font-black uppercase tracking-widest text-gray-900">
                         {category}
                       </h3>
-                      <span className="text-[10px] bg-white px-2 py-0.5 rounded-full text-gray-400 border border-gray-100 shadow-sm">
-                        {categoryPosts.length} posts
-                      </span>
                     </div>
                     
                     {categoryPosts.length > 0 ? (
-                      <ul className="space-y-4">
+                      <ul className="space-y-5">
                         {categoryPosts.map((post) => (
                           <li key={post.slug}>
                             <Link href={`/blog/${post.slug}`} className="group/item block">
-                              {/* 글 제목: 카테고리보다 작게, 하지만 명확하게 */}
-                              <h4 className="text-[13px] font-medium text-gray-600 transition-colors group-hover/item:text-primary-600 leading-relaxed hover:underline decoration-1 underline-offset-4">
+                              <h4 className="text-xs font-medium text-gray-500 transition-colors group-hover/item:text-primary-600 leading-relaxed hover:underline decoration-1 underline-offset-4">
                                 {post.title}
                               </h4>
                             </Link>
@@ -154,16 +151,20 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                         ))}
                       </ul>
                     ) : (
-                      <p className="text-xs text-gray-400 italic">No updates.</p>
+                      <p className="text-xs text-gray-300 italic">No updates.</p>
                     )}
                   </div>
                 )
               })}
-
             </div>
-          </aside>
 
-        </div>
+            {/* 여백 채우기용 장식 (선택사항) */}
+            <div className="mt-20 pt-10 border-t border-gray-50 text-xs text-gray-300">
+              © 2026 Crypto Oikonomos
+            </div>
+          </div>
+        </aside>
+
       </div>
     </div>
   )
