@@ -25,15 +25,20 @@ genai.configure(api_key=GOOGLE_API_KEY)
 editor_model = genai.GenerativeModel("gemini-2.5-flash")
 
 # 경로 설정
-BLOG_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'blog')
+BLOG_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "blog"
+)
 PERSONAL_DIR = "G:/내 드라이브/News_Briefing"  # 소장용 경로
+
 
 # ---------------------------------------------------------
 # AI 에디터 함수 (HTML -> Engaging Blog Post)
 # ---------------------------------------------------------
 def rewrite_as_blog_post(html_content):
-    print("✍️ [AI Editor] HTML 리포트를 바탕으로 매력적인 블로그 초안을 작성 중입니다...")
-    
+    print(
+        "✍️ [AI Editor] HTML 리포트를 바탕으로 매력적인 블로그 초안을 작성 중입니다..."
+    )
+
     prompt = f"""
     당신은 'Crypto Oikonomos' 블로그의 **수석 전문 에디터**입니다.
     아래 제공된 [HTML 리포트]는 팩트 위주의 딱딱한 데이터입니다.
@@ -65,6 +70,7 @@ def rewrite_as_blog_post(html_content):
     except Exception as e:
         print(f"❌ [AI Editor Error] 글 작성 중 오류 발생: {e}")
         return None
+
 
 # ---------------------------------------------------------
 # 메인 로직
@@ -98,14 +104,14 @@ def save_to_blog():
     try:
         # (1) AI에게 글쓰기 시키기
         blog_body = rewrite_as_blog_post(html_content)
-        
+
         if not blog_body:
             print("❌ 블로그 본문 생성 실패.")
             return
 
         # (2) 프론트매터(Frontmatter) 붙이기
-        today_str = datetime.now().strftime('%Y-%m-%d')
-        
+        today_str = datetime.now().strftime("%Y-%m-%d")
+
         # 블로그에 표시될 요약문
         summary_text = "매일의 글로벌 암호화폐 인사이트 브리핑입니다."
 
@@ -123,15 +129,19 @@ summary: {summary_text}
         mdx_filename = f"{today_str}-briefing.mdx"
         mdx_path = os.path.join(BLOG_DIR, mdx_filename)
 
-        with open(mdx_path, 'w', encoding='utf-8') as f:
+        with open(mdx_path, "w", encoding="utf-8") as f:
             f.write(mdx_content)
-        
+
+        # [★ 추가] 여기서 달러($) 표시 앞에 역슬래시(\)를 붙여줍니다.
+        mdx_content = mdx_content.replace("$", "\\$")
+
         print(f"✅ [Blog Draft] 블로그 초안 생성 완료!")
         print(f"📂 위치: {mdx_path}")
         print("📝 [Next Step] Cursor에서 파일을 열어 내용을 검수하고 발행하세요.")
 
     except Exception as e:
         print(f"❌ [Error] 블로그 처리 중 오류: {e}")
+
 
 if __name__ == "__main__":
     if not os.path.exists(BLOG_DIR):
