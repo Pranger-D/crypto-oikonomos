@@ -27,29 +27,27 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
 
   return (
     <>
-      {/* 1. 진행률 표시줄 & Top 버튼 */}
       <ScrollProgressBar />
       <ScrollTopAndComment />
 
-      {/* [★ 핵심] CSS Breakout Wrapper 
-          이 div가 SectionContainer의 감옥을 부수고 화면 전체 너비를 차지합니다.
+      {/* [수정 1] overflow-x-hidden 제거 
+          - sticky가 작동하지 않게 만드는 원인을 제거했습니다.
+          - w-screen을 유지하여 화면 전체 너비를 씁니다.
       */}
-      <div className="relative left-[calc(-50vw+50%)] w-screen overflow-x-hidden">
+      <div className="relative left-[calc(-50vw+50%)] w-screen">
         
-        {/* 전체 레이아웃 컨테이너 */}
-        <div className="lg:flex w-full min-h-screen">
+        {/* [수정 2] Flex 정렬 및 간격 조정
+            - justify-center: 박스들을 화면 가운데로 모읍니다.
+            - gap-12: 회색 박스와 네비게이션 사이를 넉넉하게(48px) 띄웁니다.
+        */}
+        <div className="lg:flex lg:justify-center lg:gap-12 w-full min-h-screen">
           
           {/* =========================================
               [Left Column] 메인 콘텐츠 (회색 배경)
-              - PC: 화면의 75% 차지, 회색 배경
-              - Mobile: 전체 차지, 흰색 배경
+              - lg:w-[950px]: 회색 박스 너비 (숫자를 조절하여 크기 변경 가능)
           ========================================= */}
-          <main className="w-full lg:w-[75%] bg-white lg:bg-[#F9FAFB]">
-            {/* 콘텐츠 내부 정렬: 
-                화면이 너무 넓어지면 글이 왼쪽 구석에 박히지 않도록,
-                오른쪽 여백(mr)을 주어 사이드바와 자연스럽게 멀어지게 배치 
-            */}
-            <div className="mx-auto max-w-3xl px-6 py-10 lg:ml-auto lg:mr-16 xl:mr-24 xl:max-w-4xl lg:py-20">
+          <main className="w-full lg:w-[950px] bg-white lg:bg-[#F9FAFB] lg:rounded-3xl lg:my-10 h-fit">
+            <div className="mx-auto max-w-2xl px-4 py-10 lg:px-12 lg:py-16">
               
               <article>
                 <header className="mb-10 lg:mb-14 space-y-6">
@@ -58,7 +56,9 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                       <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                       {tags && <span className="lg:hidden text-primary-500">#{tags[0]}</span>}
                     </div>
-                    <h1 className="text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+                    
+                    {/* 제목 크기 */}
+                    <h1 className="text-2xl font-extrabold leading-tight text-gray-900 sm:text-3xl md:text-4xl lg:text-[2.25rem]">
                       {title}
                     </h1>
                   </div>
@@ -79,12 +79,12 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                 </div>
 
                 {/* 본문 */}
-                <div className="prose prose-lg max-w-none text-gray-800 dark:text-gray-300 leading-8 break-keep">
+                <div className="prose lg:prose-lg max-w-none text-gray-800 dark:text-gray-300 leading-8 break-keep">
                   {children}
                 </div>
               </article>
 
-              {/* 네비게이션 */}
+              {/* 하단 네비게이션 */}
               {(next || prev) && (
                 <div className="mt-20 flex flex-col gap-8 border-t border-gray-200 lg:border-gray-300 pt-10 sm:flex-row sm:justify-between">
                   {prev && (
@@ -109,13 +109,19 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           </main>
 
           {/* =========================================
-              [Right Column] 사이드바 (흰색 배경)
-              - PC: 화면의 25% 차지, 흰색 배경, 경계선 있음
-              - Mobile: 숨김
+              [Right Column] 사이드바 영역 (레일)
+              - sticky가 작동하려면 부모(aside)가 충분히 길어야 합니다.
+              - lg:w-[200px]: 공간을 미리 확보해둡니다.
           ========================================= */}
-          <aside className="hidden lg:block lg:w-[25%] bg-white border-l border-gray-100">
-            <div className="sticky top-0 h-screen overflow-y-auto px-8 py-20 xl:px-12">
-              <div className="space-y-12">
+          <aside className="hidden lg:block lg:w-[200px] lg:my-10">
+            
+            {/* [Navigation Box] 움직이는 박스 (기차) 
+                - sticky top-10: 화면 상단에서 40px 떨어진 곳에 고정
+                - w-[200px]: 네비게이션 너비
+                - h-fit: 내용물만큼만 크기 차지
+            */}
+            <div className="sticky top-10 w-[200px] h-fit bg-white border border-gray-200 shadow-sm rounded-xl p-5">
+              <div className="space-y-8">
                 {targetCategories.map((category) => {
                   const categoryPosts = sortedPosts
                     .filter(p => p.tags.some(t => t.toUpperCase() === category.toUpperCase()) && p.slug !== slug)
@@ -123,19 +129,19 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
 
                   return (
                     <div key={category} className="group">
-                      <div className="flex items-center gap-3 mb-5">
+                      <div className="flex items-center gap-2 mb-3 border-b border-gray-100 pb-2">
                         <div className="h-1.5 w-1.5 rounded-full bg-primary-500" />
-                        <h3 className="text-sm font-black uppercase tracking-widest text-gray-900">
+                        <h3 className="text-xs font-bold uppercase tracking-widest text-gray-900">
                           {category}
                         </h3>
                       </div>
                       
                       {categoryPosts.length > 0 ? (
-                        <ul className="space-y-4">
+                        <ul className="space-y-3">
                           {categoryPosts.map((post) => (
                             <li key={post.slug}>
                               <Link href={`/blog/${post.slug}`} className="group/item block">
-                                <h4 className="text-xs font-medium text-gray-500 transition-colors group-hover/item:text-primary-600 leading-relaxed hover:underline decoration-1 underline-offset-4">
+                                <h4 className="text-xs font-medium text-gray-500 transition-colors group-hover/item:text-gray-900 group-hover/item:underline decoration-1 underline-offset-4 leading-relaxed">
                                   {post.title}
                                 </h4>
                               </Link>
