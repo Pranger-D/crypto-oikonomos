@@ -1,9 +1,9 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Crypto Oikonomos',
+  title: 'Crypto Oikonomos | 가상화폐 투자 인사이트',
   author: 'Pranger',
   headerTitle: 'Crypto Oikonomos',
-  description: 'Investment notes of a steward wisely managing entrusted capital',
+  description: '비트코인 및 알트코인 전망, 거시경제(Macro) 분석 및 경제 전망을 제공하는 투자 인사이트 플랫폼. 시장을 이기는 전략을 확인하세요.',
   language: 'ko-KR',
   theme: 'system', // system, dark or light
   siteUrl: 'https://crypto-oikonomos.vercel.app',
@@ -22,7 +22,7 @@ const siteMetadata = {
   instagram: 'https://www.instagram.com',
   medium: 'https://medium.com',
   bluesky: 'https://bsky.app/',
-  locale: 'en-US',
+  locale: 'ko-KR',
   // set to true if you want a navbar fixed to the top
   stickyNav: false,
   analytics: {

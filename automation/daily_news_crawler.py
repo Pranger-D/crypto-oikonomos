@@ -35,16 +35,36 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 
 def fetch_news_with_options(query, count, days):
     """
-    각 카테고리별로 설정된 기간(days)만큼 뉴스를 검색합니다.
+    Tavily API를 사용하여 24시간 이내(day)의 최신 뉴스만 정밀 검색합니다.
     """
-    print(f"   🔍 Searching (Last {days} days): {query}...")
+    print(f"   🔍 Searching (Strict 24h for News): {query}...")
+
+    trusted_domains = [
+        "bloomberg.com",
+        "reuters.com",
+        "wsj.com",
+        "ft.com",
+        "theblock.co",
+        "coindesk.com",
+        "cointelegraph.com",
+        "federalreserve.gov",
+        "sec.gov",
+        "whitehouse.gov",
+        "congress.gov",
+    ]
+
     try:
+        search_topic = "news" if days <= 3 else "general"
+        time_filter = "day" if days <= 1 else "year"
+
         response = tavily.search(
             query=query,
             search_depth="advanced",
+            topic=search_topic,  # [수정] 뉴스 카테고리 명시
+            time_range=time_filter,  # [수정] 'day'로 설정 시 24시간 이내 데이터 우선
+            include_domains=trusted_domains,  # 해당 도메인에서 뉴스 탐색
             include_raw_content=True,
             max_results=count,
-            days=days,  # [핵심] 카테고리별 유연한 기간 적용
         )
         return response.get("results", [])
     except Exception as e:
@@ -59,7 +79,7 @@ def get_morning_investment_briefing():
 
     print(f"--------\n[{today_str}] 🚀 맥킨지 스타일 Hybrid 브리핑 생성 시작...")
 
-    # [투 트랙 전략: News(1일) vs Context(90일)]
+    # [투 트랙 전략: News(1일) vs Context(360일)]
     search_plan = [
         # ---------------------------------------------------------
         # Track A: Breaking News (최신성 집중 - days=1)
@@ -72,11 +92,11 @@ def get_morning_investment_briefing():
             "days": 1,
             "type": "news",
         },
-        # 1-B. 크립토: 시장 트렌드, 온체인, 기술 (8개)
+        # 1-B. 크립토: 시장 트렌드, 온체인, 기술 (10개)
         {
             "category": "Breaking: Market Dynamics & Tech",
-            "query": f"Crypto market trends innovation on-chain data whale activity Bitcoin Dominence fear and greed index trending news {current_month_str}",
-            "count": 8,
+            "query": f"Crypto market trends innovation on-chain data whale activity Bitcoin Dominence fear and greed index trending news crypto policy {current_month_str}",
+            "count": 10,
             "days": 1,
             "type": "news",
         },
