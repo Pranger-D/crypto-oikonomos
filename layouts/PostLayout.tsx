@@ -34,13 +34,13 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           - sticky가 작동하지 않게 만드는 원인을 제거했습니다.
           - w-screen을 유지하여 화면 전체 너비를 씁니다.
       */}
-      <div className="relative left-[calc(-50vw+50%)] w-screen">
+      <div className="relative left-[calc(-50vw+50%)] w-screen overflow-x-hidden lg:overflow-x-visible">
         
         {/* [수정 2] Flex 정렬 및 간격 조정
             - justify-center: 박스들을 화면 가운데로 모읍니다.
             - gap-5: 회색 박스와 네비게이션 사이를 넉넉하게(20px) 띄웁니다.
         */}
-        <div className="lg:flex lg:justify-center lg:gap-5 w-full min-h-screen">
+        <div className="lg:flex lg:justify-center lg:gap-3 w-full min-h-screen">
           
           {/* =========================================
               [Left Column] 메인 콘텐츠 (회색 배경)
@@ -48,7 +48,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
               - lg:px-6 : 회색 박스 여백 24px
           ========================================= */}
           <main className="w-full lg:w-[950px] bg-white lg:bg-[#F9FAFB] lg:rounded-3xl lg:my-10 h-fit">
-            <div className="mx-auto max-w-full px-4 py-10 lg:px-6 lg:py-16">
+            <div className="mx-auto max-w-full px-4 py-10 lg:px-10 lg:py-16">
               
               <article>
                 <header className="mb-10 lg:mb-14 space-y-6">
