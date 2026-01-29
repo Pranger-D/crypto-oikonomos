@@ -34,7 +34,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           - sticky가 작동하지 않게 만드는 원인을 제거했습니다.
           - w-screen을 유지하여 화면 전체 너비를 씁니다.
       */}
-      <div className="relative left-[calc(-50vw+50%)] w-screen overflow-x-hidden lg:overflow-x-visible">
+      <div className="w-full overflow-x-hidden lg:relative lg:left-[calc(-50vw+50%)] lg:w-screen lg:overflow-x-visible">
         
         {/* [수정 2] Flex 정렬 및 간격 조정
             - justify-center: 박스들을 화면 가운데로 모읍니다.
@@ -58,8 +58,12 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                       {tags && <span className="lg:hidden text-primary-500">#{tags[0]}</span>}
                     </div>
                     
-                    {/* 제목 크기 */}
-                    <h1 className="text-2xl font-extrabold leading-tight text-gray-900 sm:text-3xl md:text-4xl lg:text-[2.25rem]">
+                    {/* [타이포그래피 전략]
+                        - text-xl (20px): 모바일 (작고 깔끔하게)
+                         - md:text-2xl (24px): 태블릿 (중간 크기 추가)
+                         - lg:text-2xl (24px): PC (시원하게, 하지만 부담스럽지 않게)
+                    */}
+                    <h1 className="text-xl font-bold leading-tight text-gray-900 md:text-2xl lg:text-2xl">
                       {title}
                     </h1>
                   </div>
