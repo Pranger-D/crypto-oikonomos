@@ -38,16 +38,17 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
         
         {/* [수정 2] Flex 정렬 및 간격 조정
             - justify-center: 박스들을 화면 가운데로 모읍니다.
-            - gap-12: 회색 박스와 네비게이션 사이를 넉넉하게(48px) 띄웁니다.
+            - gap-5: 회색 박스와 네비게이션 사이를 넉넉하게(20px) 띄웁니다.
         */}
-        <div className="lg:flex lg:justify-center lg:gap-12 w-full min-h-screen">
+        <div className="lg:flex lg:justify-center lg:gap-5 w-full min-h-screen">
           
           {/* =========================================
               [Left Column] 메인 콘텐츠 (회색 배경)
               - lg:w-[950px]: 회색 박스 너비 (숫자를 조절하여 크기 변경 가능)
+              - lg:px-6 : 회색 박스 여백 24px
           ========================================= */}
           <main className="w-full lg:w-[950px] bg-white lg:bg-[#F9FAFB] lg:rounded-3xl lg:my-10 h-fit">
-            <div className="mx-auto max-w-2xl px-4 py-10 lg:px-12 lg:py-16">
+            <div className="mx-auto max-w-full px-4 py-10 lg:px-6 lg:py-16">
               
               <article>
                 <header className="mb-10 lg:mb-14 space-y-6">
