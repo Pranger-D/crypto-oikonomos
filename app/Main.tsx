@@ -25,7 +25,7 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ 
-              backgroundImage: 'url(https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=2075&auto=format&fit=crop)',
+              backgroundImage: "url('/static/images/main.avif')",
             }} 
           />
           

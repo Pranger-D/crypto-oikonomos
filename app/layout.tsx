@@ -18,10 +18,11 @@ const space_grotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
 })
 
+// [1] 한글 폰트 설정 (유지)
 const notoSansKr = Noto_Sans_KR({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '700'], // 굵기 다양하게
-  variable: '--font-noto-sans-kr',      // tailwind에서 쓸 변수명
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-noto-sans-kr',
   display: 'swap',
 })
 
@@ -32,13 +33,19 @@ export const metadata: Metadata = {
     template: `%s | ${siteMetadata.title}`,
   },
   description: siteMetadata.description,
+  verification: {
+    other: {
+      'naver-site-verification': 'ca1659143e556f5e39406a3dbf838be63a5f279b',
+    },
+  },
   openGraph: {
     title: siteMetadata.title,
     description: siteMetadata.description,
     url: './',
     siteName: siteMetadata.title,
     images: [siteMetadata.socialBanner],
-    locale: 'en_US',
+    // [2] 중요: 검색엔진에게 '여기는 한국 사이트다'라고 선언
+    locale: 'ko_KR', 
     type: 'website',
   },
   alternates: {
@@ -71,7 +78,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${space_grotesk.variable} scroll-smooth`}
+      // [3] 폰트 변수를 html 태그에 넣어야 자식 요소들이 상속받기 가장 좋습니다.
+      className={`${space_grotesk.variable} ${notoSansKr.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <link
@@ -101,7 +109,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
-      <body className={`bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white ${space_grotesk.variable} ${notoSansKr.variable}`}>
+      
+      {/* body에서는 변수 제거하고 배경색 설정만 유지 */}
+      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
           <SectionContainer>

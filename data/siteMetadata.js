@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Crypto Oikonomos | 가상화폐 투자 인사이트',
   author: 'Pranger',
   headerTitle: 'Crypto Oikonomos',
-  description: '비트코인 및 알트코인 전망, 거시경제(Macro) 분석 및 경제 전망을 제공하는 투자 인사이트 플랫폼. 시장을 이기는 전략을 확인하세요.',
+  description: '비트코인 및 알트코인 전망, 거시경제(Macro) 분석 및 경제 전망을 제공하는 투자 인사이트 플랫폼. Crypto Oikonomos에서 시장을 이기는 전략을 확인하세요.',
   language: 'ko-KR',
   theme: 'system', // system, dark or light
   siteUrl: 'https://crypto-oikonomos.vercel.app',
@@ -12,16 +12,16 @@ const siteMetadata = {
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'address@yoursite.com',
-  github: 'https://github.com',
-  x: 'https://twitter.com/x',
+  github: 'https://github.com/Pranger-D',
+  //x: 'https://twitter.com/x',
   // twitter: 'https://twitter.com/Twitter',
-  facebook: 'https://facebook.com',
-  youtube: 'https://youtube.com',
-  linkedin: 'https://www.linkedin.com',
-  threads: 'https://www.threads.net',
-  instagram: 'https://www.instagram.com',
-  medium: 'https://medium.com',
-  bluesky: 'https://bsky.app/',
+  //facebook: 'https://facebook.com',
+  //youtube: 'https://youtube.com',
+  //linkedin: 'https://www.linkedin.com',
+  //threads: 'https://www.threads.net',
+  //instagram: 'https://www.instagram.com',
+  //medium: 'https://medium.com',
+  //bluesky: 'https://bsky.app/',
   locale: 'ko-KR',
   // set to true if you want a navbar fixed to the top
   stickyNav: false,
@@ -81,7 +81,7 @@ const siteMetadata = {
       // example: https://giscus.app/themes/custom_example.css
       themeURL: '',
       // This corresponds to the `data-lang="en"` in giscus's configurations
-      lang: 'en',
+      lang: 'ko',
     },
   },
   search: {

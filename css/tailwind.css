@@ -227,3 +227,34 @@ input:-webkit-autofill:focus {
   text-decoration: underline;
   color: var(--color-primary-600);
 }
+
+/* =========================================
+   [Chief Officer's UI Polish Pack]
+   맨 아래에 추가하여 최종적으로 적용되는 규칙들
+   ========================================= */
+
+   @layer utilities {
+    /* 한글 줄바꿈 최적화 (단어 단위 줄바꿈) */
+    .break-keep {
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+  
+    /* 본문(Prose) 설정 업그레이드 */
+    .prose {
+      word-break: keep-all; /* 본문 단어 끊김 방지 */
+      overflow-wrap: break-word;
+    }
+  }
+  
+  /* 네비게이션(메뉴) 디테일 */
+  nav a {
+    font-weight: 600 !important;
+    letter-spacing: -0.01em;
+    font-size: 0.95rem;
+  }
+  
+  /* 일반 텍스트 자간 미세 조정 */
+  p {
+    letter-spacing: -0.01em;
+  }
