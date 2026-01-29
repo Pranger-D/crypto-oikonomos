@@ -63,7 +63,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                          - md:text-2xl (24px): 태블릿 (중간 크기 추가)
                          - lg:text-2xl (24px): PC (시원하게, 하지만 부담스럽지 않게)
                     */}
-                    <h1 className="text-xl font-bold leading-tight text-gray-900 md:text-2xl lg:text-3xl">
+                    <h1 className="text-xl font-bold leading-tight text-gray-900 md:text-2xl lg:text-2xl">
                       {title}
                     </h1>
                   </div>
