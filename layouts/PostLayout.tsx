@@ -47,7 +47,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
               - lg:w-[950px]: 회색 박스 너비 (숫자를 조절하여 크기 변경 가능)
               - lg:px-6 : 회색 박스 여백 24px
           ========================================= */}
-          <main className="w-full lg:w-[950px] bg-white lg:bg-[#F9FAFB] lg:rounded-3xl lg:my-10 h-fit">
+          <main className="w-full lg:w-[900px] bg-white lg:bg-[#FCFCFF] lg:rounded-3xl lg:my-10 h-fit">
             <div className="mx-auto max-w-full px-4 py-10 lg:px-10 lg:py-16">
               
               <article>
