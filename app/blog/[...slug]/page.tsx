@@ -16,8 +16,8 @@ import { notFound } from 'next/navigation'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
-  PostSimple,
   PostLayout,
+  PostSimple,
   PostBanner,
 }
 

@@ -178,20 +178,45 @@ input:-webkit-autofill:focus {
    [Custom Typography for PostLayout] 
    맨 아래에 추가하여 기존 설정을 덮어씁니다.
    ========================================= */
+
+/* 1. 제목 공통 설정 (색상, 굵기, 자간) */
 .prose h1, .prose h2, .prose h3 {
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--color-gray-900); /* 테마 색상 변수 활용 */
-  margin-top: 2.5em;
+  color: var(--color-gray-900);
+  line-height: 1.3;
 }
   
-.prose p {
+/* 2. H1 (#) 크기 강제 축소 (가장 중요) */
+.prose h1 {
+  font-size: 1.6rem !important; /* 약 26px (기본값은 36px 이상임) */
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+/* 3. H2 (##) 크기 강제 축소 */
+.prose h2 {
+  font-size: 1.4rem !important; /* 약 22px */
+  margin-top: 1.8em;
+  margin-bottom: 0.8em;
+}
+
+/* 4. H3 (###) 크기 */
+.prose h3 {
+  font-size: 1.25rem !important; /* 약 20px */
   margin-top: 1.5em;
-  margin-bottom: 1.5em;
+  margin-bottom: 0.6em;
+}
+
+/* 본문(Paragraph) 설정 */
+.prose p {
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
   line-height: 1.8;
   color: var(--color-gray-700);
 }
   
+/* 링크 설정 */
 .prose a {
   color: var(--color-primary-500);
   text-decoration: none;
