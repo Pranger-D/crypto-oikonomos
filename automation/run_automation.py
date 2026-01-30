@@ -5,13 +5,12 @@ from pathlib import Path
 from dotenv import load_dotenv
 import google.generativeai as genai
 
-# 1. 귀하가 만든 크롤러 함수 가져오기
+# 1. 크롤러 함수 가져오기
 from daily_news_crawler import get_morning_investment_briefing
 
 # ---------------------------------------------------------
 # 설정 (Settings & Init)
 # ---------------------------------------------------------
-# 환경 변수 로드 (.env)
 env_path = Path(__file__).parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
@@ -30,6 +29,25 @@ BLOG_DIR = os.path.join(
 )
 PERSONAL_DIR = "G:/내 드라이브/News_Briefing"  # 소장용 경로
 
+# OneDrive 대응 바탕화면 경로 탐색 함수
+def get_desktop_path():
+    home = os.path.expanduser("~")
+    paths = [
+        os.path.join(home, "OneDrive", "바탕 화면"),
+        os.path.join(home, "OneDrive", "Desktop"),
+        os.path.join(home, "Desktop"),
+        os.path.join(home, "바탕 화면")
+    ]
+    for p in paths:
+        if os.path.exists(p):
+            return p
+    return os.path.join(home, "Desktop")
+
+DESKTOP_PATH = get_desktop_path()
+PUBLIC_IMG_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "public", "static", "images"
+)
 
 # ---------------------------------------------------------
 # AI 에디터 함수 (HTML -> Engaging Blog Post)
@@ -71,17 +89,6 @@ def rewrite_as_blog_post(html_content):
         print(f"❌ [AI Editor Error] 글 작성 중 오류 발생: {e}")
         return None
 
-
-# [추가할 경로 설정]
-DESKTOP_PATH = os.path.join(os.path.expanduser("~"), "Desktop")
-PUBLIC_IMG_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "public",
-    "static",
-    "images",
-)
-
-
 # ---------------------------------------------------------
 # 메인 로직
 # ---------------------------------------------------------
@@ -94,22 +101,21 @@ def save_to_blog():
     month_day = now.strftime("%m-%d")  # 01-30
     today_str = now.strftime("%Y-%m-%d")
 
-    # 최종 폴더명 규격: 01-30-briefing
-    folder_name = f"{month_day}-briefing"
+    # [수석 책임자의 가이드] 인자가 있으면 해당 카테고리 사용 (예: study, insight)
+    category = sys.argv[1] if len(sys.argv) > 1 else "briefing"
+    folder_name = f"{month_day}-{category}"
 
     # 2. [폴더 생성] 바탕화면 작업 폴더 & 프로젝트 이미지 폴더
-    desktop_target_dir = os.path.join(DESKTOP_PATH, "blog", year, folder_name)
-    project_target_dir = os.path.join(PUBLIC_IMG_DIR, year, folder_name)
+    desktop_target_dir = os.path.join(DESKTOP_PATH, "blog", year, folder_name) # 바탕화면용
+    project_target_dir = os.path.join(PUBLIC_IMG_DIR, year, folder_name) # 프로젝트용
 
     try:
-        os.makedirs(desktop_target_dir, exist_ok=True)  # 바탕화면용
-        os.makedirs(project_target_dir, exist_ok=True)  # 프로젝트용
+        os.makedirs(desktop_target_dir, exist_ok=True)
+        os.makedirs(project_target_dir, exist_ok=True)
         print(f"📂 [System] 폴더 준비 완료: {folder_name}")
-
-        # 바탕화면 폴더 즉시 열기 (작업 편의성)
-        os.startfile(desktop_target_dir)
+        os.startfile(desktop_target_dir) # 탐색기 자동 열기
     except Exception as e:
-        print(f"⚠️ [Warning] 폴더 생성 중 알림: {e}")
+        print(f"⚠️ [Warning] 폴더 생성 알림: {e}")
 
     # 3. 크롤러 실행 (데이터 수집)
     try:
@@ -146,12 +152,12 @@ def save_to_blog():
         today_str = datetime.now().strftime("%Y-%m-%d")
 
         # 블로그에 표시될 요약문
-        summary_text = "매일의 글로벌 암호화폐 인사이트 브리핑입니다."
+        summary_text = "오늘의 글로벌 암호화폐 인사이트 브리핑입니다."
 
         mdx_content = f"""---
 title: '시장 브리핑: 오늘의 크립토 인사이트 ({today_str})'
 date: '{today_str}'
-tags: ['Briefing']
+tags: ['{category.capitalize()}']
 draft: true
 summary: {summary_text}
 ---
@@ -159,18 +165,16 @@ summary: {summary_text}
 {blog_body}
 """
         # (3) 파일 저장
-        mdx_filename = f"{today_str}-briefing.mdx"
+        mdx_content = mdx_content.replace("$", "\\$")
+        mdx_filename = f"{today_str}-{category}.mdx" # 파일명에도 카테고리 반영
         mdx_path = os.path.join(BLOG_DIR, mdx_filename)
 
         with open(mdx_path, "w", encoding="utf-8") as f:
             f.write(mdx_content)
 
-        # [★ 추가] 여기서 달러($) 표시 앞에 역슬래시(\)를 붙여줍니다.
-        mdx_content = mdx_content.replace("$", "\\$")
-
         print(f"✅ [Blog Draft] 블로그 초안 생성 완료!")
         print(f"📂 위치: {mdx_path}")
-        print("📝 [Next Step] Cursor에서 파일을 열어 내용을 검수하고 발행하세요.")
+        print(f"💡 [Next Step] 탐색기에 이미지를 넣고 'python image_processor.py {category}'를 실행하세요.")
 
     except Exception as e:
         print(f"❌ [Error] 블로그 처리 중 오류: {e}")
@@ -178,6 +182,6 @@ summary: {summary_text}
 
 if __name__ == "__main__":
     if not os.path.exists(BLOG_DIR):
-        print(f"❌ [Config Error] 블로그 폴더({BLOG_DIR})를 찾을 수 없습니다.")
+        print(f"❌ 블로그 폴더 누락")
     else:
         save_to_blog()
