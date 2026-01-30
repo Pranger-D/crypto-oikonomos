@@ -84,19 +84,19 @@ def get_morning_investment_briefing():
         # ---------------------------------------------------------
         # Track A: Breaking News (최신성 집중 - days=1)
         # ---------------------------------------------------------
-        # 1-A. 크립토: 제도권, 규제, 기관 움직임 (10개)
+        # 1-A. 크립토: 제도권, 규제, 기관 움직임 (15개)
         {
             "category": "Breaking: Crypto Regulation & Institutions",
-            "query": f"Cryptocurrency regulation news institutional adoption major market movers financial policy change updates {current_month_str}",  # 이번 달 한정
-            "count": 10,
+            "query": f"Cryptocurrency regulation news institutional adoption major market movers financial crypto policy change updates {current_month_str}",  # 이번 달 한정
+            "count": 15,
             "days": 1,
             "type": "news",
         },
-        # 1-B. 크립토: 시장 트렌드, 온체인, 기술 (10개)
+        # 1-B. 크립토: 시장 트렌드, 온체인, 기술 (15개)
         {
             "category": "Breaking: Market Dynamics & Tech",
-            "query": f"Crypto market trends innovation on-chain data whale activity Bitcoin Dominence fear and greed index trending news crypto policy {current_month_str}",
-            "count": 10,
+            "query": f"Crypto market trends innovation on-chain data whale activity Bitcoin Dominence fear and greed index trending news {current_month_str}",
+            "count": 15,
             "days": 1,
             "type": "news",
         },
@@ -172,7 +172,7 @@ def get_morning_investment_briefing():
                 continue
 
             # Context 자료는 본문을 좀 더 길게 가져와서 깊이를 더함
-            limit = 8000 if plan["type"] == "context" else 4000
+            limit = 20000 if plan["type"] == "context" else 4000
             truncated_content = content[:limit]
 
             # AI에게 줄 데이터에 [TYPE] 태그를 붙여서 구분시킴
@@ -209,7 +209,7 @@ def get_morning_investment_briefing():
 
     [Output Rules]
     1. **Format:** 오직 `<html>`로 시작해서 `</html>`로 끝나는 소스 코드만 출력하십시오. (마크다운 코드블록 ```html 사용 금지)
-       - 강조하고 싶은 날짜나 수치에 `**` (별표)를 쓰지 마십시오. (화면에 지저분하게 보입니다)
+       - 강조하고 싶은 단어가 있다면, `'**단어**'`와 같이 `'`안쪽에 `**` (별표)를 사용하십시오. 너무 많은 단어를 강조하지 마십시오. 지저분해보입니다.
     2. **Tone:** 권위 있고, 분석적이며, 냉철한 프로페셔널 톤.
     3. **Strict Date Check (중요):** - 최신 속보의 경우, `Date:` 필드를 확인하십시오. 
        - 오늘 날짜({today_str}) 기준, 24시간 이상 과거 뉴스는 절대 인용하지 마십시오.
@@ -232,7 +232,7 @@ def get_morning_investment_briefing():
     1. **Header:** McKinsey Style Title & Date
     2. **Section 1: Market Ticker** (속보 중심)
        - Crypto, Macro, Geo 섹터별로 핵심 뉴스 한 줄 헤드라인 나열(중요도 순 최대 2개)
-    3. **Section 2: Deep Dive Analysis** (통찰 중심)
+    3. **Section 2: Deep Dive Analysis** (최신성을 살리되 통찰 중심)
        - **Executive Insight:** (회색 박스) 시장 흐름 5줄 요약.
        - **Theme 1: Macro & Policy (거시 경제 및 동향):** 정책, 경제 지표 분석, 지정학적 이슈.
        - **Theme 2: Crypto Dynamics(암호화폐 시장 동향):** 규제 및 기관 동향.

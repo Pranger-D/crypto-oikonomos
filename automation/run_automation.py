@@ -44,10 +44,10 @@ def rewrite_as_blog_post(html_content):
     아래 제공된 [HTML 리포트]는 팩트 위주의 딱딱한 데이터입니다.
     
     당신의 임무는 이 데이터를 바탕으로 **독자의 시선을 사로잡는(Hooking)**, 
-    그리고 **정보 전달력이 뛰어난** 블로그 포스팅 초안(Markdown)을 작성하는 것입니다. 이모티콘은 쓰지마세요.
+    그리고 **정보 전달력이 뛰어나며 숨은 함의까지 읽어내는** 블로그 포스팅 초안(Markdown)을 작성하는 것입니다. 이모티콘은 쓰지마세요.
 
     [작성 원칙]
-    1. **Role:** 금융/투자 전문 블로거 (전문적인 어투로, 그러나 이해하기 쉽게 설명해주세요.)
+    1. **Role:** 금융/투자 전문 블로거 (전문적인 어투로, 그러나 너무 딱딱하지 않게 이해하기 쉽게 설명해주세요.)
     2. **Hooking:** 서론에서 "왜 오늘 이 뉴스를 봐야 하는지" 강렬하게 어필하세요.
     3. **Structure:**
        - **🚀 오늘의 핵심 요약 (3줄)**: 바쁜 독자를 위해 맨 위에 배치.
@@ -72,13 +72,46 @@ def rewrite_as_blog_post(html_content):
         return None
 
 
+# [추가할 경로 설정]
+DESKTOP_PATH = os.path.join(os.path.expanduser("~"), "Desktop")
+PUBLIC_IMG_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "public",
+    "static",
+    "images",
+)
+
+
 # ---------------------------------------------------------
 # 메인 로직
 # ---------------------------------------------------------
 def save_to_blog():
     print("🚀 [System] 통합 브리핑 & 블로그 초안 생성 프로세스 시작...")
 
-    # 1. 크롤러 실행 (데이터 수집)
+    # 1. 날짜 및 폴더명 계산
+    now = datetime.now()
+    year = now.strftime("%Y")  # 2026
+    month_day = now.strftime("%m-%d")  # 01-30
+    today_str = now.strftime("%Y-%m-%d")
+
+    # 최종 폴더명 규격: 01-30-briefing
+    folder_name = f"{month_day}-briefing"
+
+    # 2. [폴더 생성] 바탕화면 작업 폴더 & 프로젝트 이미지 폴더
+    desktop_target_dir = os.path.join(DESKTOP_PATH, "blog", year, folder_name)
+    project_target_dir = os.path.join(PUBLIC_IMG_DIR, year, folder_name)
+
+    try:
+        os.makedirs(desktop_target_dir, exist_ok=True)  # 바탕화면용
+        os.makedirs(project_target_dir, exist_ok=True)  # 프로젝트용
+        print(f"📂 [System] 폴더 준비 완료: {folder_name}")
+
+        # 바탕화면 폴더 즉시 열기 (작업 편의성)
+        os.startfile(desktop_target_dir)
+    except Exception as e:
+        print(f"⚠️ [Warning] 폴더 생성 중 알림: {e}")
+
+    # 3. 크롤러 실행 (데이터 수집)
     try:
         html_content = get_morning_investment_briefing()
         if not html_content:
@@ -88,7 +121,7 @@ def save_to_blog():
         print(f"❌ [Error] 크롤러 실행 중 오류: {e}")
         return
 
-    # 2. [소장용] HTML 파일 저장 (기존 방식 유지)
+    # 4. [소장용] HTML 파일 저장 (기존 방식 유지)
     try:
         save_folder = PERSONAL_DIR if os.path.exists(PERSONAL_DIR) else os.getcwd()
         html_filename = f"Briefing_{date.today()}.html"
@@ -100,7 +133,7 @@ def save_to_blog():
     except Exception as e:
         print(f"⚠️ [Warning] 소장용 저장 실패: {e}")
 
-    # 3. [블로그용] AI 에디팅 및 MDX 저장
+    # 5. [블로그용] AI 에디팅 및 MDX 저장
     try:
         # (1) AI에게 글쓰기 시키기
         blog_body = rewrite_as_blog_post(html_content)

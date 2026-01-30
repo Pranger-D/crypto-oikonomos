@@ -23,7 +23,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
   const { date, title, tags, slug } = content
   const sortedPosts = sortPosts(allBlogs)
   const targetCategories = ['Briefing', 'Insight', 'Study']
-  const displayImage = content.images && content.images[0] ? content.images[0] : '/static/images/twitter-card.png'
+  const displayImage = content.images && content.images[0] ? content.images[0] : '/static/images/common-hero.webp'
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
               - lg:px-6 : 회색 박스 여백 24px
           ========================================= */}
           <main className="w-full lg:w-[900px] bg-white lg:bg-[#FCFCFF] lg:rounded-3xl lg:my-10 h-fit">
-            <div className="mx-auto max-w-full px-4 py-10 lg:px-10 lg:py-16">
+            <div className="mx-auto max-w-full px-2 py-10 lg:px-10 lg:py-16">
               
               <article>
                 <header className="mb-10 lg:mb-14 space-y-6">
@@ -78,7 +78,8 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                        alt={title} 
                        fill 
                        className="object-cover" 
-                       priority 
+                       priority // LCP 성능 향상을 위해 필수
+                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 800px" 
                      />
                    </div>
                 </div>
