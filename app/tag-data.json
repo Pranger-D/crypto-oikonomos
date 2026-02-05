@@ -1,8 +1,8 @@
 {
   "briefing": 8,
-  "bitcoin": 1,
+  "bitcoin": 2,
+  "macro": 2,
   "fed": 1,
-  "macro": 1,
   "next-js": 6,
   "tailwind": 3,
   "guide": 5,
