@@ -1,5 +1,7 @@
 'use client'
 
+import { indicatorTranslations } from './indicatorTranslations'
+
 interface MacroIndicator {
     country: string
     indicator: string
@@ -12,6 +14,36 @@ interface MacroIndicator {
 interface MacroIndicatorsProps {
     selectedDate: string | null
     indicators: MacroIndicator[]
+}
+
+// 국가명 한글 번역
+const countryTranslations: Record<string, string> = {
+    'United States': '미국',
+    'China': '중국',
+    'united states': '미국',
+    'china': '중국',
+}
+
+// 번역 함수 (매칭되지 않으면 원문 반환)
+function translateIndicator(indicator: string): string {
+    // 월/분기 정보 제거 (예: "CPI (Dec)" -> "CPI", "GDP (Q3)" -> "GDP")
+    const baseIndicator = indicator.replace(/\s+\([A-Za-z0-9]+\)\s*$/, '').trim()
+
+    // 번역 시도
+    const translated = indicatorTranslations[baseIndicator]
+
+    if (translated) {
+        // 번역이 있으면 원래 월/분기 정보 추가
+        const monthMatch = indicator.match(/\s+(\([A-Za-z0-9]+\))\s*$/)
+        return translated + (monthMatch ? ' ' + monthMatch[1] : '')
+    }
+
+    // 번역이 없으면 원문 반환
+    return indicator
+}
+
+function translateCountry(country: string): string {
+    return countryTranslations[country] || country
 }
 
 export default function MacroIndicators({ selectedDate, indicators }: MacroIndicatorsProps) {
@@ -61,10 +93,10 @@ export default function MacroIndicators({ selectedDate, indicators }: MacroIndic
                         <div className="flex items-start justify-between mb-3">
                             <div>
                                 <span className="inline-block px-2 py-1 text-xs font-semibold rounded bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 mr-2">
-                                    {item.country}
+                                    {translateCountry(item.country)}
                                 </span>
                                 <span className="text-sm font-bold text-gray-900 dark:text-gray-100">
-                                    {item.indicator}
+                                    {translateIndicator(item.indicator)}
                                 </span>
                             </div>
                             <span className="text-xs text-yellow-600 dark:text-yellow-400 font-semibold">
@@ -84,12 +116,12 @@ export default function MacroIndicators({ selectedDate, indicators }: MacroIndic
                                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">실제치</p>
                                 <p
                                     className={`text-sm font-bold ${item.actual !== null && item.forecast !== null
-                                            ? item.actual > item.forecast
-                                                ? 'text-green-600 dark:text-green-400'
-                                                : item.actual < item.forecast
-                                                    ? 'text-red-600 dark:text-red-400'
-                                                    : 'text-gray-700 dark:text-gray-300'
-                                            : 'text-gray-700 dark:text-gray-300'
+                                        ? item.actual > item.forecast
+                                            ? 'text-green-600 dark:text-green-400'
+                                            : item.actual < item.forecast
+                                                ? 'text-red-600 dark:text-red-400'
+                                                : 'text-gray-700 dark:text-gray-300'
+                                        : 'text-gray-700 dark:text-gray-300'
                                         }`}
                                 >
                                     {item.actual !== null ? item.actual : 'N/A'}

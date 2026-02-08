@@ -26,19 +26,19 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/static/images/main.avif')",
+              backgroundImage: "url('/static/images/main-page.avif')",
             }}
           />
 
           {/* 그라데이션: 이미지가 아래로 갈수록 흰색 배경과 자연스럽게 섞임 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white" />
 
           {/* 히어로 텍스트 */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-            <h1 className="text-4xl font-extrabold text-white drop-shadow-lg sm:text-5xl md:text-7xl">
+            <h1 className="text-4xl font-extrabold text-gray-900 drop-shadow-lg sm:text-5xl md:text-7xl">
               {siteMetadata.headerTitle}
             </h1>
-            <p className="mt-4 text-lg font-medium text-gray-100 drop-shadow-md sm:text-xl max-w-2xl">
+            <p className="mt-4 text-lg font-medium text-gray-700 drop-shadow-md sm:text-xl max-w-2xl">
               {siteMetadata.description}
             </p>
           </div>

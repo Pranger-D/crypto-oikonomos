@@ -1,0 +1,47 @@
+📊 실제 데이터에 저장된 거시지표 이름:
+============================================================
+
+ 1. 10-Year Note Auction
+ 2. 30-Year Bond Auction
+ 3. ADP Nonfarm Employment Change  (Jan)
+ 4. Average Hourly Earnings (MoM)  (Dec)
+ 5. CB Consumer Confidence  (Jan)
+ 6. CPI (MoM)  (Dec)
+ 7. CPI (YoY)  (Dec)
+ 8. Chicago PMI  (Jan)
+ 9. Core CPI (MoM)  (Dec)
+10. Core PCE Price Index (MoM)  (Nov)
+11. Core PCE Price Index (MoM)  (Oct)
+12. Core PCE Price Index (YoY)  (Nov)
+13. Core PCE Price Index (YoY)  (Oct)
+14. Core Retail Sales (MoM)  (Nov)
+15. Crude Oil Inventories
+16. Durable Goods Orders (MoM)  (Nov)
+17. Existing Home Sales  (Dec)
+18. FOMC Press Conference
+19. FOMC Statement
+20. Fed Interest Rate Decision
+21. GDP (QoQ)  (Q3)
+22. GDP (YoY)  (Q4)
+23. ISM Manufacturing PMI  (Jan)
+24. ISM Manufacturing Prices  (Jan)
+25. ISM Non-Manufacturing PMI  (Jan)
+26. ISM Non-Manufacturing Prices  (Jan)
+27. Initial Jobless Claims
+28. JOLTS Job Openings  (Dec)
+29. Manufacturing PMI  (Jan)
+30. New Home Sales  (Oct)
+31. New Home Sales  (Sep)
+32. Nonfarm Payrolls  (Dec)
+33. PPI (MoM)  (Dec)
+34. PPI (MoM)  (Nov)
+35. PPI (MoM)  (Oct)
+36. Philadelphia Fed Manufacturing Index  (Jan)
+37. Retail Sales (MoM)  (Nov)
+38. S&P Global Manufacturing PMI  (Jan)
+39. S&P Global Services PMI  (Jan)
+40. U.S. President Trump Speaks
+41. Unemployment Rate  (Dec)
+42. United States - Martin Luther King, Jr. Day
+
+총 42개 지표

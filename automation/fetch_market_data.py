@@ -8,6 +8,7 @@
 import os
 import json
 import sys
+import math
 from datetime import datetime, timedelta
 from pathlib import Path
 import requests
@@ -24,6 +25,13 @@ if not COINGECKO_API_KEY:
 # 경로 설정
 PROJECT_ROOT = Path(__file__).parent.parent
 DATA_FILE = PROJECT_ROOT / "public" / "data" / "dashboard-data.json"
+
+# NaN을 None으로 변환하는 헬퍼 함수
+def safe_value(val):
+    """NaN을 None으로 변환 (JSON 호환성)"""
+    if isinstance(val, float) and math.isnan(val):
+        return None
+    return val
 
 # 어제와 오늘 날짜
 yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
@@ -161,7 +169,14 @@ try:
     
     if not calendar.empty:
         for _, row in calendar.iterrows():
-            date_str = row['date']
+            # investpy는 DD/MM/YYYY 형식 반환 → YYYY-MM-DD로 변환
+            raw_date = row['date']
+            try:
+                date_obj = datetime.strptime(raw_date, "%d/%m/%Y")
+                date_str = date_obj.strftime("%Y-%m-%d")
+            except ValueError:
+                # 이미 YYYY-MM-DD 형식이면 그대로 사용
+                date_str = raw_date
             
             if date_str not in data['macroIndicators']:
                 data['macroIndicators'][date_str] = []
@@ -170,9 +185,9 @@ try:
                 "country": row['zone'],
                 "indicator": row['event'],
                 "importance": row['importance'],
-                "actual": row.get('actual', None),
-                "forecast": row.get('forecast', None),
-                "previous": row.get('previous', None)
+                "actual": safe_value(row.get('actual', None)),
+                "forecast": safe_value(row.get('forecast', None)),
+                "previous": safe_value(row.get('previous', None))
             }
             
             # 중복 체크
