@@ -5,6 +5,7 @@ import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
+import DashboardContainer from '@/components/Dashboard/DashboardContainer'
 
 // 3단 카테고리 정의 (여기에 정의된 태그가 글에 있어야 화면에 나옵니다)
 const TARGET_CATEGORIES = ['Briefing', 'Insight', 'Study']
@@ -22,13 +23,13 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
       <div className="relative -mx-4 mb-16 sm:-mx-6 md:-mx-12 lg:-mx-20">
         <div className="relative h-[450px] w-full overflow-hidden md:h-[600px]">
           {/* 배경 이미지 (설원/구름 등 밝은 톤 권장) */}
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ 
+            style={{
               backgroundImage: "url('/static/images/main.avif')",
-            }} 
+            }}
           />
-          
+
           {/* 그라데이션: 이미지가 아래로 갈수록 흰색 배경과 자연스럽게 섞임 */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-white" />
 
@@ -44,8 +45,16 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
         </div>
       </div>
 
+      {/* ==========================================
+          Section 1.5: Interactive Dashboard
+          - BTC/Total2 차트, 거시지표, 블로그 글 연동
+      ========================================== */}
+      <div className="mb-16">
+        <DashboardContainer />
+      </div>
+
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        
+
         {/* ==========================================
             Section 2: Latest Updates (최신 글 3개)
         ========================================== */}
@@ -61,7 +70,7 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
               View All &rarr;
             </Link>
           </div>
-          
+
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 pt-6">
             {!posts.length && <p className="text-gray-500">포스팅이 없습니다.</p>}
             {latestPosts.map((post) => {
@@ -106,10 +115,10 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 pt-4">
             {TARGET_CATEGORIES.map((category) => {
               // 해당 카테고리(태그)를 가진 글만 필터링 (최신순 5개)
-              const categoryPosts = posts.filter(p => 
+              const categoryPosts = posts.filter(p =>
                 p.tags.some(t => t.toUpperCase() === category.toUpperCase())
               ).slice(0, 5)
-              
+
               return (
                 <div key={category} className="rounded-2xl bg-gray-50 p-6 dark:bg-gray-800/50">
                   <div className="mb-6 flex items-center gap-3">
@@ -118,7 +127,7 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
                       {category}
                     </h3>
                   </div>
-                  
+
                   {categoryPosts.length > 0 ? (
                     <ul className="space-y-4">
                       {categoryPosts.map((post) => (
@@ -138,7 +147,7 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
                       <p className="text-xs mt-1 text-primary-400">#{category} 태그를 추가하세요</p>
                     </div>
                   )}
-                  
+
                   <div className="mt-6">
                     <Link href={`/tags/${category.toLowerCase()}`} className="text-xs font-bold uppercase text-gray-400 hover:text-primary-500">
                       View all {category} &rarr;

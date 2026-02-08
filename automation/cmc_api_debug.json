@@ -1,0 +1,263 @@
+{
+  "data": {
+    "quotes": [
+      {
+        "timestamp": "2026-01-29T09:25:00.000Z",
+        "searchInterval": "1440",
+        "btcDominance": 58.9747,
+        "ethDominance": 11.9346,
+        "activeCryptocurrencies": 8975,
+        "activeExchanges": 918,
+        "activeMarketPairs": 119038,
+        "quote": [
+          {
+            "name": "USD",
+            "timestamp": "2026-01-29T09:25:00.000Z",
+            "totalMarketCap": 2978641046988.7,
+            "totalVolume24H": 113390145917.43,
+            "totalVolume24HReported": 567111489917.1,
+            "altcoinVolume24H": 68316154420.65,
+            "altcoinVolume24HReported": 353312261588.97,
+            "altcoinMarketCap": 1221995506461.04,
+            "originId": "2549756"
+          }
+        ],
+        "totalCryptocurrencies": 37013,
+        "totalExchanges": 11767,
+        "score": 1769678700000.0
+      },
+      {
+        "timestamp": "2026-01-30T09:25:00.000Z",
+        "searchInterval": "1440",
+        "btcDominance": 58.7303,
+        "ethDominance": 11.7298,
+        "activeCryptocurrencies": 9000,
+        "activeExchanges": 918,
+        "activeMarketPairs": 119369,
+        "quote": [
+          {
+            "name": "USD",
+            "timestamp": "2026-01-30T09:25:00.000Z",
+            "totalMarketCap": 2803015455414.25,
+            "totalVolume24H": 186072228627.07,
+            "totalVolume24HReported": 925874855350.43,
+            "altcoinVolume24H": 105495786124.6,
+            "altcoinVolume24HReported": 556879098563.98,
+            "altcoinMarketCap": 1156795512943.2,
+            "originId": "2551200"
+          }
+        ],
+        "totalCryptocurrencies": 37053,
+        "totalExchanges": 11772,
+        "score": 1769765100000.0
+      },
+      {
+        "timestamp": "2026-01-31T09:25:00.000Z",
+        "searchInterval": "1440",
+        "btcDominance": 59.201,
+        "ethDominance": 11.3726,
+        "activeCryptocurrencies": 8999,
+        "activeExchanges": 919,
+        "activeMarketPairs": 119750,
+        "quote": [
+          {
+            "name": "USD",
+            "timestamp": "2026-01-31T09:25:00.000Z",
+            "totalMarketCap": 2794805036509.48,
+            "totalVolume24H": 133058078237.2,
+            "totalVolume24HReported": 711317433684.37,
+            "altcoinVolume24H": 81681827558.59,
+            "altcoinVolume24HReported": 473208242936.8,
+            "altcoinMarketCap": 1140253864210.22,
+            "originId": "2552640"
+          }
+        ],
+        "totalCryptocurrencies": 37055,
+        "totalExchanges": 11774,
+        "score": 1769851500000.0
+      },
+      {
+        "timestamp": "2026-02-01T09:25:00.000Z",
+        "searchInterval": "1440",
+        "btcDominance": 59.1607,
+        "ethDominance": 10.9558,
+        "activeCryptocurrencies": 8997,
+        "activeExchanges": 919,
+        "activeMarketPairs": 119792,
+        "quote": [
+          {
+            "name": "USD",
+            "timestamp": "2026-02-01T09:25:00.000Z",
+            "totalMarketCap": 2656178952439.71,
+            "totalVolume24H": 188414516582.39,
+            "totalVolume24HReported": 983732023993.83,
+            "altcoinVolume24H": 114481431191.69,
+            "altcoinVolume24HReported": 625902544272.5,
+            "altcoinMarketCap": 1084765692929.34,
+            "originId": "2554080"
+          }
+        ],
+        "totalCryptocurrencies": 37056,
+        "totalExchanges": 11777,
+        "score": 1769937900000.0
+      },
+      {
+        "timestamp": "2026-02-02T09:25:00.000Z",
+        "searchInterval": "1440",
+        "btcDominance": 59.4023,
+        "ethDominance": 10.501,
+        "activeCryptocurrencies": 8984,
+        "activeExchanges": 919,
+        "activeMarketPairs": 119816,
+        "quote": [
+          {
+            "name": "USD",
+            "timestamp": "2026-02-02T09:25:00.000Z",
+            "totalMarketCap": 2588876792561.93,
+            "totalVolume24H": 181759648174.18,
+            "totalVolume24HReported": 998501864954.31,
+            "altcoinVolume24H": 110835982451.01,
+            "altcoinVolume24HReported": 645441251082.7,
+            "altcoinMarketCap": 1051024917904.01,
+            "originId": "2555520"
+          }
+        ],
+        "totalCryptocurrencies": 37060,
+        "totalExchanges": 11778,
+        "score": 1770024300000.0
+      },
+      {
+        "timestamp": "2026-02-03T09:25:00.000Z",
+        "searchInterval": "1440",
+        "btcDominance": 59.429,
+        "ethDominance": 10.489,
+        "activeCryptocurrencies": 8957,
+        "activeExchanges": 920,
+        "activeMarketPairs": 119931,
+        "quote": [
+          {
+            "name": "USD",
+            "timestamp": "2026-02-03T09:25:00.000Z",
+            "totalMarketCap": 2624326741447.69,
+            "totalVolume24H": 138750106553.14,
+            "totalVolume24HReported": 704390685623.31,
+            "altcoinVolume24H": 82579419952.87,
+            "altcoinVolume24HReported": 462822434683.24,
+            "altcoinMarketCap": 1064715527101.23,
+            "originId": "2556960"
+          }
+        ],
+        "totalCryptocurrencies": 37065,
+        "totalExchanges": 11787,
+        "score": 1770110700000.0
+      },
+      {
+        "timestamp": "2026-02-04T09:25:00.000Z",
+        "searchInterval": "1440",
+        "btcDominance": 59.0078,
+        "ethDominance": 10.5767,
+        "activeCryptocurrencies": 8946,
+        "activeExchanges": 922,
+        "activeMarketPairs": 120150,
+        "quote": [
+          {
+            "name": "USD",
+            "timestamp": "2026-02-04T09:25:00.000Z",
+            "totalMarketCap": 2577888958025.43,
+            "totalVolume24H": 164762719244.0,
+            "totalVolume24HReported": 922090127630.42,
+            "altcoinVolume24H": 98023836376.9,
+            "altcoinVolume24HReported": 571597077516.5,
+            "altcoinMarketCap": 1056733467140.12,
+            "originId": "2558400"
+          }
+        ],
+        "totalCryptocurrencies": 37068,
+        "totalExchanges": 11788,
+        "score": 1770197100000.0
+      },
+      {
+        "timestamp": "2026-02-05T09:25:00.000Z",
+        "searchInterval": "1440",
+        "btcDominance": 58.6102,
+        "ethDominance": 10.5515,
+        "activeCryptocurrencies": 8952,
+        "activeExchanges": 922,
+        "activeMarketPairs": 120121,
+        "quote": [
+          {
+            "name": "USD",
+            "timestamp": "2026-02-05T09:25:00.000Z",
+            "totalMarketCap": 2440582868385.53,
+            "totalVolume24H": 197961035642.7,
+            "totalVolume24HReported": 1107502012604.28,
+            "altcoinVolume24H": 113989823505.19,
+            "altcoinVolume24HReported": 677491196071.93,
+            "altcoinMarketCap": 1010152492058.79,
+            "originId": "2559840"
+          }
+        ],
+        "totalCryptocurrencies": 37079,
+        "totalExchanges": 11792,
+        "score": 1770283500000.0
+      },
+      {
+        "timestamp": "2026-02-06T09:25:00.000Z",
+        "searchInterval": "1440",
+        "btcDominance": 58.3478,
+        "ethDominance": 10.2211,
+        "activeCryptocurrencies": 8943,
+        "activeExchanges": 922,
+        "activeMarketPairs": 119427,
+        "quote": [
+          {
+            "name": "USD",
+            "timestamp": "2026-02-06T09:25:00.000Z",
+            "totalMarketCap": 2239181531024.03,
+            "totalVolume24H": 313256527625.2,
+            "totalVolume24HReported": 1711388211704.37,
+            "altcoinVolume24H": 169182788521.21,
+            "altcoinVolume24HReported": 986743093467.23,
+            "altcoinMarketCap": 932669303901.13,
+            "originId": "2561280"
+          }
+        ],
+        "totalCryptocurrencies": 37081,
+        "totalExchanges": 11796,
+        "score": 1770369900000.0
+      },
+      {
+        "timestamp": "2026-02-07T09:25:00.000Z",
+        "searchInterval": "1440",
+        "btcDominance": 58.4141,
+        "ethDominance": 10.4138,
+        "activeCryptocurrencies": 8950,
+        "activeExchanges": 922,
+        "activeMarketPairs": 119362,
+        "quote": [
+          {
+            "name": "USD",
+            "timestamp": "2026-02-07T09:25:00.000Z",
+            "totalMarketCap": 2348419577303.38,
+            "totalVolume24H": 202372041165.33,
+            "totalVolume24HReported": 1009713064525.19,
+            "altcoinVolume24H": 112452729760.91,
+            "altcoinVolume24HReported": 575525445062.23,
+            "altcoinMarketCap": 976611171513.41,
+            "originId": "2562720"
+          }
+        ],
+        "totalCryptocurrencies": 37082,
+        "totalExchanges": 11797,
+        "score": 1770456300000.0
+      }
+    ]
+  },
+  "status": {
+    "timestamp": "2026-02-08T09:20:45.545Z",
+    "error_code": "0",
+    "error_message": "SUCCESS",
+    "elapsed": "8",
+    "credit_count": 0
+  }
+}
