@@ -1,6 +1,9 @@
 {
-  "briefing": 10,
-  "bitcoin": 4,
+  "insight": 1,
+  "bitcoin": 5,
+  "fud": 1,
+  "fomo": 1,
+  "briefing": 11,
   "fed": 4,
   "macro": 4,
   "next-js": 6,
