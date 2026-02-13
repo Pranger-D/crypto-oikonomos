@@ -23849,6 +23849,52 @@
         "previous": null
       }
     ],
+    "2026-02-10": [
+      {
+        "country": "United States",
+        "indicator": "Core Retail Sales (MoM)",
+        "actual": "0.0%",
+        "forecast": "0.3%",
+        "previous": "0.4%",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Retail Sales (MoM)",
+        "actual": "0.0%",
+        "forecast": "0.4%",
+        "previous": "0.6%",
+        "importance": "high"
+      }
+    ],
+    "2026-02-11": [
+      {
+        "country": "United States",
+        "indicator": "Nonfarm Payrolls",
+        "actual": "130k",
+        "forecast": "66k",
+        "previous": "48k",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Unemployment Rate",
+        "actual": "4.3%",
+        "forecast": "4.4%",
+        "previous": "4.4%",
+        "importance": "high"
+      }
+    ],
+    "2026-02-12": [
+      {
+        "country": "United States",
+        "indicator": "Initial Jobless Claims",
+        "actual": "227k",
+        "forecast": "222k",
+        "previous": "232k",
+        "importance": "high"
+      }
+    ],
     "2026-02-13": [
       {
         "country": "United States",
