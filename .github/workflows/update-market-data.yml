@@ -25,14 +25,18 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install yfinance investpy requests python-dotenv
+          pip install yfinance requests python-dotenv google-generativeai tavily-python
       
       - name: Run daily update script
         env:
           COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         run: |
           cd automation
           echo "COINGECKO_API_KEY=$COINGECKO_API_KEY" > .env
+          echo "TAVILY_API_KEY=$TAVILY_API_KEY" >> .env
+          echo "GOOGLE_API_KEY=$GOOGLE_API_KEY" >> .env
           python fetch_market_data.py
       
       - name: Commit and push changes

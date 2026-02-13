@@ -13,12 +13,16 @@ from datetime import datetime, timedelta
 from pathlib import Path
 import requests
 from dotenv import load_dotenv
+import google.generativeai as genai
+from tavily import TavilyClient
 
 # 환경 변수 로드
 env_path = Path(__file__).parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
 COINGECKO_API_KEY = os.getenv("COINGECKO_API_KEY")
+TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 if not COINGECKO_API_KEY:
     print("⚠️ COINGECKO_API_KEY가 없습니다. API 키 없이 시도합니다.")
 
@@ -32,6 +36,114 @@ def safe_value(val):
     if isinstance(val, float) and math.isnan(val):
         return None
     return val
+
+# ==========================================
+# AI 기반 거시지표 수집 설정
+# ==========================================
+
+# 중요 지표 화이트리스트
+WHITELIST = {
+    "United States": [
+        "Federal Funds Rate",
+        "Consumer Price Index", "CPI", "Core CPI", "PCE", "PPI",
+        "Nonfarm Payrolls", "Unemployment Rate", "ADP Nonfarm", "JOLTS",
+        "Gross Domestic Product", "GDP",
+        "ISM Manufacturing PMI", "ISM Services PMI",
+        "Retail Sales",
+        "Consumer Confidence", "Michigan Consumer Sentiment"
+    ],
+    "China": [
+        "Gross Domestic Product", "GDP",
+        "Industrial Production",
+        "Retail Sales",
+        "Caixin Manufacturing PMI", "Manufacturing PMI", "Non-Manufacturing PMI",
+        "Consumer Price Index", "CPI", "PPI",
+        "Trade Balance", "Exports", "Imports",
+        "Money Supply M2"
+    ]
+}
+
+def fetch_economic_data_ai(target_date):
+    """
+    Tavily + Gemini를 사용하여 특정 날짜의 경제 지표를 수집하고
+    화이트리스트에 있는 항목만 필터링하여 반환합니다.
+    """
+    if not TAVILY_API_KEY or not GOOGLE_API_KEY:
+        print("⚠️ API Key 부족으로 AI 지표 수집을 건너뜁니다.")
+        return []
+
+    # 클라이언트 초기화
+    tavily = TavilyClient(api_key=TAVILY_API_KEY)
+    genai.configure(api_key=GOOGLE_API_KEY)
+    model = genai.GenerativeModel("gemini-2.5-flash")
+    
+    query = f"economic calendar {target_date} United States China actual forecast previous"
+    print(f"   🔍 AI 검색 중: {query}...")
+    
+    try:
+        search_result = tavily.search(query=query, search_depth="advanced")
+        context = search_result.get("results", [])
+        
+        prompt = f"""
+        You are a strict data extraction engine.
+        
+        [Task]
+        Extract economic indicators for United States and China from the provided text for date: {target_date}.
+        
+        [Source Data]
+        {json.dumps(context)}
+        
+        [Extraction Rules]
+        1. Extract ONLY the following fields: "date" (YYYY-MM-DD), "country", "indicator", "actual", "forecast", "previous".
+        2. **Strictly whitelist**: Only extract indicators that keywords match closely with: {json.dumps(WHITELIST)}.
+        3. **Anti-Hallucination**: 
+           - Extract ONLY numbers explicitly present. 
+           - If 'actual' value is not yet released or missing, return `null`.
+           - Do NOT calculate or estimate.
+        4. Return format: JSON list of objects.
+        
+        [Output Format]
+        ```json
+        [
+            {{"date": "{target_date}", "country": "United States", "indicator": "CPI (YoY)", "actual": "3.1%", "forecast": "2.9%", "previous": "3.4%"}}
+        ]
+        ```
+        """
+        
+        response = model.generate_content(prompt)
+        text = response.text.replace("```json", "").replace("```", "").strip()
+        
+        try:
+            extracted_data = json.loads(text)
+        except json.JSONDecodeError:
+            print(f"   ⚠️ AI 응답 파싱 실패: {text[:100]}...")
+            return []
+            
+        # 화이트리스트 기반 2차 필터링 (Python 측 검증)
+        filtered_data = []
+        for item in extracted_data:
+            country = item.get("country")
+            indicator = item.get("indicator")
+            
+            if country not in WHITELIST:
+                continue
+                
+            # 키워드 매칭 확인
+            is_whitelisted = False
+            for keyword in WHITELIST[country]:
+                if keyword.lower() in indicator.lower():
+                    is_whitelisted = True
+                    break
+            
+            if is_whitelisted and item.get("actual") is not None:
+                filtered_data.append(item)
+                
+        print(f"   ✅ 추출된 지표: {len(filtered_data)}개 (화이트리스트 필터 적용짐)")
+        return filtered_data
+
+    except Exception as e:
+        print(f"   ❌ AI 지표 수집 중 오류: {e}")
+        return []
 
 # 어제와 오늘 날짜
 yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
@@ -152,66 +264,46 @@ else:
     print("⚠️ 데이터가 불완전하여 업데이트를 건너뜁니다.")
 
 # ============================================
-# 4. 거시지표 업데이트 (오늘 발표분)
+# 4. 거시지표 업데이트 (AI 기반)
 # ============================================
-print(f"\n📊 [4/5] 거시지표 업데이트 중...")
-try:
-    import investpy
+print(f"\n📊 [4/5] 거시지표 업데이트 중 (Tavily + Gemini)...")
+
+# 어제와 오늘 데이터 수집
+targets = [yesterday, today]
+
+for target_date in targets:
+    ai_data = fetch_economic_data_ai(target_date)
     
-    # 오늘 발표된 지표만 가져오기
-    calendar = investpy.news.economic_calendar(
-        time_zone="GMT",
-        countries=["united states", "china"],
-        importances=["high"],
-        from_date=yesterday.replace("-", "/"),
-        to_date=today.replace("-", "/")
-    )
-    
-    if not calendar.empty:
-        for _, row in calendar.iterrows():
-            # investpy는 DD/MM/YYYY 형식 반환 → YYYY-MM-DD로 변환
-            raw_date = row['date']
-            try:
-                date_obj = datetime.strptime(raw_date, "%d/%m/%Y")
-                date_str = date_obj.strftime("%Y-%m-%d")
-            except ValueError:
-                # 이미 YYYY-MM-DD 형식이면 그대로 사용
-                date_str = raw_date
+    if ai_data:
+        if target_date not in data['macroIndicators']:
+            data['macroIndicators'][target_date] = []
             
-            if date_str not in data['macroIndicators']:
-                data['macroIndicators'][date_str] = []
-            
-            indicator = {
-                "country": row['zone'],
-                "indicator": row['event'],
-                "importance": row['importance'],
-                "actual": safe_value(row.get('actual', None)),
-                "forecast": safe_value(row.get('forecast', None)),
-                "previous": safe_value(row.get('previous', None))
+        for item in ai_data:
+            indicator_entry = {
+                "country": item['country'],
+                "indicator": item['indicator'],
+                "importance": "high", # Whitelisted items are considered high importance
+                "actual": safe_value(item.get('actual')),
+                "forecast": safe_value(item.get('forecast')),
+                "previous": safe_value(item.get('previous'))
             }
             
             # 중복 체크
-            existing = [i for i in data['macroIndicators'][date_str] 
-                       if i['indicator'] == indicator['indicator']]
+            existing = [i for i in data['macroIndicators'][target_date] 
+                       if i['indicator'] == indicator_entry['indicator']]
             
             if not existing:
-                data['macroIndicators'][date_str].append(indicator)
-        
-        # 미국 우선 정렬
-        for date_str in data['macroIndicators']:
-            data['macroIndicators'][date_str] = sorted(
-                data['macroIndicators'][date_str],
-                key=lambda x: (x['country'] != 'United States', x['indicator'])
-            )
-        
-        print(f"✅ 거시지표 업데이트 완료")
-    else:
-        print("ℹ️ 오늘 발표된 high importance 지표 없음")
-        
-except ImportError:
-    print("⚠️ investpy 미설치, 거시지표 스킵")
-except Exception as e:
-    print(f"⚠️ 거시지표 업데이트 실패: {e}")
+                data['macroIndicators'][target_date].append(indicator_entry)
+                print(f"   -> 추가: [{item['country']}] {item['indicator']} (Actual: {item['actual']})")
+
+# 미국 우선 정렬
+for date_str in data['macroIndicators']:
+    data['macroIndicators'][date_str] = sorted(
+        data['macroIndicators'][date_str],
+        key=lambda x: (x['country'] != 'United States', x['indicator'])
+    )
+
+print(f"✅ 거시지표 업데이트 완료")
 
 # ============================================
 # 5. 블로그 글 업데이트
