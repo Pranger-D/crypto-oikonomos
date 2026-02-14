@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "2026-02-13T15:33:56.958711",
+  "lastUpdated": "2026-02-14T15:16:56.118108",
   "metadata": {
     "startDate": "2013-04-28",
-    "endDate": "2026-02-13",
-    "totalDays": 4673,
+    "endDate": "2026-02-14",
+    "totalDays": 4674,
     "dataSource": {
       "btc": "CoinGecko (historical BTC price & market cap)",
       "macro": "investpy (Investing.com)",
@@ -23376,6 +23376,11 @@
       "date": "2026-02-13",
       "btc": 66633,
       "btc_dominance": 56.5
+    },
+    {
+      "date": "2026-02-14",
+      "btc": 69608,
+      "btc_dominance": 56.6
     }
   ],
   "macroIndicators": {
@@ -23996,6 +24001,13 @@
         "slug": "2026-02-12-briefing",
         "title": "시장 브리핑: 오늘의 크립토 인사이트 (2026-02-12)",
         "category": "Briefing"
+      }
+    ],
+    "2026-02-14": [
+      {
+        "slug": "2026-02-14-risk-monitor",
+        "title": "유동성 리스크 모니터 — 지표 레퍼런스 가이드",
+        "category": "Risk"
       }
     ]
   }
