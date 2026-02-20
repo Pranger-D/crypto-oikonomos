@@ -13,6 +13,7 @@ import {
     Legend,
     ResponsiveContainer,
     ComposedChart,
+    Brush
 } from 'recharts'
 import { format, parseISO } from 'date-fns'
 
@@ -101,69 +102,37 @@ export default function MarketChart({ data, onDateClick, selectedDate }: MarketC
         }
     }
 
-    // Zoom 컨트롤
-    const handleZoomIn = () => {
-        const currentRange = dateRange[1] - dateRange[0]
-        const newRange = Math.max(30, Math.floor(currentRange * 0.7))
-        const center = Math.floor((dateRange[0] + dateRange[1]) / 2)
-        const newStart = Math.max(0, center - Math.floor(newRange / 2))
-        const newEnd = Math.min(data.length - 1, newStart + newRange)
-        setDateRange([newStart, newEnd])
-    }
-
-    const handleZoomOut = () => {
-        const currentRange = dateRange[1] - dateRange[0]
-        const newRange = Math.min(data.length, Math.floor(currentRange * 1.5))
-        const center = Math.floor((dateRange[0] + dateRange[1]) / 2)
-        const newStart = Math.max(0, center - Math.floor(newRange / 2))
-        const newEnd = Math.min(data.length - 1, newStart + newRange)
-        setDateRange([newStart, newEnd])
-    }
-
-    const handleReset = () => {
-        setDateRange([Math.max(0, data.length - 90), data.length - 1])
-    }
-
-    const handleShowAll = () => {
-        setDateRange([0, data.length - 1])
-    }
-
     return (
         <div className="space-y-4">
-            {/* 컨트롤 버튼 */}
-            <div className="flex items-center justify-between">
-                <div className="flex gap-2">
-                    <button
-                        onClick={handleZoomIn}
-                        className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-                    >
-                        Zoom In
-                    </button>
-                    <button
-                        onClick={handleZoomOut}
-                        className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-                    >
-                        Zoom Out
-                    </button>
-                    <button
-                        onClick={handleReset}
-                        className="px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 transition"
-                    >
-                        90일
-                    </button>
-                    <button
-                        onClick={handleShowAll}
-                        className="px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 transition"
-                    >
-                        전체
-                    </button>
-                </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
+            {/* 타임라인 컨트롤 (Brush) */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-2">
+                <div className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                     {format(parseISO(displayData[0]?.date || data[0].date), 'yyyy-MM-dd')} ~{' '}
                     {format(
                         parseISO(displayData[displayData.length - 1]?.date || data[data.length - 1].date),
                         'yyyy-MM-dd'
                     )}
+                </div>
+
+                <div className="w-full sm:w-2/5 h-8">
+                    <ResponsiveContainer width="100%" height="100%">
+                        <LineChart data={data}>
+                            <Brush
+                                dataKey="date"
+                                height={25}
+                                stroke="#94A3B8"
+                                fill="#F8FAFC"
+                                onChange={(newRange) => {
+                                    if (newRange && typeof newRange.startIndex === 'number' && typeof newRange.endIndex === 'number') {
+                                        setDateRange([newRange.startIndex, newRange.endIndex])
+                                    }
+                                }}
+                                tickFormatter={(v) => format(parseISO(v), 'yyyy-MM-dd')}
+                                startIndex={dateRange[0]}
+                                endIndex={dateRange[1]}
+                            />
+                        </LineChart>
+                    </ResponsiveContainer>
                 </div>
             </div>
 

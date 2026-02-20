@@ -6,6 +6,7 @@ import NewsletterForm from 'pliny/ui/NewsletterForm'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
 import DashboardContainer from '@/components/Dashboard/DashboardContainer'
+import LiquidityMonitor from '@/components/LiquidityMonitor'
 
 // 3단 카테고리 정의 (여기에 정의된 태그가 글에 있어야 화면에 나옵니다)
 const TARGET_CATEGORIES = ['Briefing', 'Insight', 'Study']
@@ -49,8 +50,16 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
           Section 1.5: Interactive Dashboard
           - BTC/Total2 차트, 거시지표, 블로그 글 연동
       ========================================== */}
-      <div className="mb-16">
+      <div className="mb-4">
         <DashboardContainer />
+      </div>
+
+      {/* ==========================================
+          Section 1.8: Liquidity Risk Monitor
+          - FRED 데이터 기반 실시간 유동성 상황판
+      ========================================== */}
+      <div className="mb-16">
+        <LiquidityMonitor />
       </div>
 
       <div className="divide-y divide-gray-200 dark:divide-gray-700">

@@ -98,9 +98,18 @@ export default function DashboardContainer() {
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                     {data.metadata.startDate} ~ {data.metadata.endDate} ({data.metadata.totalDays}일)
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
-                    마지막 업데이트: {new Date(data.lastUpdated).toLocaleString('ko-KR')}
-                </p>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500 dark:text-gray-500 mt-1">
+                    <span>마지막 업데이트: {new Date(data.lastUpdated).toLocaleString('ko-KR')}</span>
+                    <span className="hidden sm:inline">|</span>
+                    <span className="flex flex-wrap items-center gap-2">
+                        <span className="font-semibold">데이터 소스:</span>
+                        <span>BTC: {data.metadata.dataSource.btc}</span>
+                        <span>•</span>
+                        <span>Dominance: {data.metadata.dataSource.btc_dominance}</span>
+                        <span>•</span>
+                        <span>거시지표: {data.metadata.dataSource.macro}</span>
+                    </span>
+                </div>
             </div>
 
             {/* 차트 */}
@@ -110,16 +119,6 @@ export default function DashboardContainer() {
                     onDateClick={setSelectedDate}
                     selectedDate={selectedDate}
                 />
-            </div>
-
-            {/* 데이터 소스 정보 */}
-            <div className="text-xs text-gray-500 dark:text-gray-500 flex items-center gap-4 flex-wrap">
-                <span className="font-semibold">데이터 소스:</span>
-                <span>BTC: {data.metadata.dataSource.btc}</span>
-                <span>•</span>
-                <span>Dominance: {data.metadata.dataSource.btc_dominance}</span>
-                <span>•</span>
-                <span>거시지표: {data.metadata.dataSource.macro}</span>
             </div>
 
             {/* 거시지표 + 블로그 글 */}
