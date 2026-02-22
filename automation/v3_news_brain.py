@@ -40,10 +40,21 @@ DESKTOP_PATH = get_desktop_path()
 # 2. 고정 컨텍스트(Macro & Insight) 캐싱 전략
 # ==========================================
 CONTEXT_SOURCES = {
-    "fomc": "Latest FOMC Minutes summary",
-    "world_bank": "Latest World Bank / IMF Global Economic Prospects",
-    "glassnode": "Glassnode latest on-chain week report summary",
-    "a16z": "latest a16z (Andreessen Horowitz) State of Crypto"
+    # 🌊 Part 1: 유동성과 금융 배관 레이더
+    "fomc_minutes": "Latest FOMC Minutes summary",
+    "fed_liquidity_plumbing": "Latest reverse repo (RRP) TGA balance Fed liquidity analysis zerohedge",
+    "global_macro_fx": "latest US dollar index DXY BOJ ECB rate decision fx dynamics macro analysis",
+    
+    # 📊 Part 1: 파생상품 & 온체인 펀더멘털 레이더
+    "glassnode_onchain": "Glassnode The Week On-chain latest report insight",
+    "greeks_live_options": "Latest Greeks.live crypto options expiry implied volatility skew analysis",
+    "stablecoin_flows": "latest stablecoin supply USDT USDC net flow analysis coinmetrics",
+    "coinshares_funds": "Latest CoinShares Digital Asset Fund Flows Weekly summary",
+    
+    # 🔥 Part 2: 거장의 뷰 & 투자 철학(멘탈) 레이더
+    "arthur_hayes_essay": "Latest Arthur Hayes BitMEX blog post essay thesis",
+    "howard_marks_memo": "Latest Howard Marks Oaktree Capital memo summary",
+    "warren_buffett_charlie_munger": "Latest Warren Buffett Berkshire Hathaway shareholder letter core principles"
 }
 
 def load_cache():
@@ -74,11 +85,15 @@ def fetch_and_cache_contexts():
                 
                 if key not in cache or cache[key].get("date") != latest_date:
                     print(f"      ✨ [New Update] 새로운 리포트 발견! 캐시 갱신 ({latest_date})")
+                    
+                    # raw_content 값이 None으로 반환될 경우의 슬라이싱 에러 방지
+                    raw_content = latest_article.get("raw_content") or ""
+                    
                     cache[key] = {
                         "date": latest_date,
-                        "title": latest_article.get("title", ""),
-                        "url": latest_article.get("url", ""),
-                        "content": latest_article.get("raw_content", "")[:10000]
+                        "title": latest_article.get("title") or "",
+                        "url": latest_article.get("url") or "",
+                        "content": raw_content[:10000]
                     }
                     updated_cache = True
                 else:
