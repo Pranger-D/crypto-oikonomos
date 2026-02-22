@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "2026-02-19T15:39:40.488470",
+  "lastUpdated": "2026-02-22T23:22:47.013681",
   "metadata": {
     "startDate": "2013-04-28",
-    "endDate": "2026-02-19",
-    "totalDays": 4679,
+    "endDate": "2026-02-22",
+    "totalDays": 4680,
     "dataSource": {
       "btc": "CoinGecko (historical BTC price & market cap)",
       "macro": "investpy (Investing.com)",
@@ -23406,6 +23406,11 @@
       "date": "2026-02-19",
       "btc": 66364,
       "btc_dominance": 56.4
+    },
+    {
+      "date": "2026-02-22",
+      "btc": 67574,
+      "btc_dominance": 56.6
     }
   ],
   "macroIndicators": {
@@ -23938,16 +23943,6 @@
     "2026-02-19": [
       {
         "country": "United States",
-        "indicator": "Philadelphia Fed Manufacturing Index (Feb)",
-        "actual": "16.3",
-        "forecast": "7.5",
-        "previous": "12.6",
-        "importance": "high"
-      }
-    ],
-    "2026-02-19": [
-      {
-        "country": "United States",
         "indicator": "Initial Jobless Claims",
         "actual": "206k",
         "forecast": "223k",
@@ -24053,6 +24048,20 @@
         "slug": "2026-02-14-risk-monitor",
         "title": "유동성 리스크 모니터 — 지표 레퍼런스 가이드",
         "category": "Risk"
+      }
+    ],
+    "2026-02-22": [
+      {
+        "slug": "2026-02-22-briefing",
+        "title": "시장 브리핑: 오늘의 크립토 브리핑 (2026-02-22)",
+        "category": "Briefing"
+      }
+    ],
+    "2026-02-21": [
+      {
+        "slug": "2026-02-21-briefing",
+        "title": "시장 브리핑: 오늘의 크립토 브리핑 (2026-02-21)",
+        "category": "Briefing"
       }
     ]
   }
