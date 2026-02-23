@@ -23335,32 +23335,32 @@
     {
       "date": "2026-02-05",
       "btc": 73172.29,
-      "btc_dominance": 57.3
+      "btc_dominance": 60.6
     },
     {
       "date": "2026-02-06",
       "btc": 62853.69,
-      "btc_dominance": 56.5
+      "btc_dominance": 59.2
     },
     {
       "date": "2026-02-07",
       "btc": 70523.95,
-      "btc_dominance": 57.0
+      "btc_dominance": 57.4
     },
     {
       "date": "2026-02-08",
       "btc": 69296.81,
-      "btc_dominance": null
+      "btc_dominance": 63.5
     },
     {
       "date": "2026-02-09",
       "btc": 69524,
-      "btc_dominance": 56.9
+      "btc_dominance": 52.6
     },
     {
       "date": "2026-02-10",
       "btc": 69286,
-      "btc_dominance": 57.1
+      "btc_dominance": 52.6
     },
     {
       "date": "2026-02-11",
@@ -23370,42 +23370,42 @@
     {
       "date": "2026-02-12",
       "btc": 67306,
-      "btc_dominance": 56.7
+      "btc_dominance": 57.1
     },
     {
       "date": "2026-02-13",
       "btc": 66633,
-      "btc_dominance": 56.5
+      "btc_dominance": 57.1
     },
     {
       "date": "2026-02-14",
       "btc": 69608,
-      "btc_dominance": 56.6
+      "btc_dominance": 56.5
     },
     {
       "date": "2026-02-15",
       "btc": 69167,
-      "btc_dominance": 56.5
+      "btc_dominance": 53.8
     },
     {
       "date": "2026-02-16",
       "btc": 68128,
-      "btc_dominance": 57.0
+      "btc_dominance": 54.9
     },
     {
       "date": "2026-02-17",
       "btc": 66772,
-      "btc_dominance": 56.2
+      "btc_dominance": 56.5
     },
     {
       "date": "2026-02-18",
       "btc": 68223,
-      "btc_dominance": 55.8
+      "btc_dominance": 57.3
     },
     {
       "date": "2026-02-19",
       "btc": 66364,
-      "btc_dominance": 56.4
+      "btc_dominance": 58.2
     },
     {
       "date": "2026-02-20",
@@ -23708,14 +23708,6 @@
         "actual": "84.5",
         "forecast": "90.6",
         "previous": "94.2"
-      },
-      {
-        "country": "united states",
-        "indicator": "U.S. President Trump Speaks",
-        "importance": "high",
-        "actual": null,
-        "forecast": null,
-        "previous": null
       }
     ],
     "2026-01-28": [
@@ -23957,6 +23949,84 @@
         "actual": "206k",
         "forecast": "223k",
         "previous": "229k",
+        "importance": "high"
+      }
+    ],
+    "2026-02-20": [
+      {
+        "country": "United States",
+        "indicator": "Crude Oil Inventories",
+        "actual": "-9.014M",
+        "forecast": "1.700M",
+        "previous": "8.530M",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Core PCE Price Index (MoM) (Dec)",
+        "actual": "0.4%",
+        "forecast": "0.3%",
+        "previous": "0.2%",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "GDP (QoQ) (Q4)",
+        "actual": "1.4%",
+        "forecast": "2.8%",
+        "previous": "4.4%",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Core PCE Price Index (YoY) (Dec)",
+        "actual": "3.0%",
+        "forecast": "2.9%",
+        "previous": "2.8%",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Manufacturing PMI (Feb)",
+        "actual": "51.2",
+        "forecast": "52.4",
+        "previous": "52.4",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Services PMI (Feb)",
+        "actual": "52.3",
+        "forecast": "53.0",
+        "previous": "52.7",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "New Home Sales (Nov)",
+        "actual": "758K",
+        "forecast": null,
+        "previous": "737K",
+        "importance": "high"
+      }
+    ],
+    "2026-02-21": [
+      {
+        "country": "United States",
+        "indicator": "New Home Sales (Dec)",
+        "actual": "745K",
+        "forecast": "732K",
+        "previous": "656K",
+        "importance": "high"
+      }
+    ],
+    "2026-02-25": [
+      {
+        "country": "United States",
+        "indicator": "CB Consumer Confidence (Feb)",
+        "actual": null,
+        "forecast": "87.6",
+        "previous": "84.5",
         "importance": "high"
       }
     ]
