@@ -231,7 +231,9 @@ def run_v3_automation():
     # (1) 선생님이 올린 이미지들 치환
     for img_name in user_images:
         mdx_path_for_user_img = f"/static/images/{year}/{folder_name}/{img_name}"
-        html_img = f'\n<div className="flex justify-center my-8">\n  <img src="{mdx_path_for_user_img}" alt="User Provided Image" className="rounded-lg shadow-lg border border-gray-200" />\n</div>\n'
+        # 확장자를 제외한 순수 파일명을 추출하여 alt 속성으로 사용
+        alt_text = os.path.splitext(img_name)[0]
+        html_img = f'\n<div className="flex justify-center my-8">\n  <img src="{mdx_path_for_user_img}" alt="{alt_text}" className="rounded-lg shadow-lg border border-gray-200" />\n</div>\n'
         
         # 프롬프트에서 요청한 [IMAGE_xxx.webp] 태그를 찾아서 치환
         tag = f"[IMAGE_{img_name}]"
