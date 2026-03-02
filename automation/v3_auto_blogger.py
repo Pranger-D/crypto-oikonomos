@@ -147,10 +147,10 @@ def generate_blog_content(brain_data, image_list):
     지원하는 type은 4가지입니다: "asset"(단일자산등락), "compare"(두자산비교), "ma"(비트코인이동평균선), "volatility"(변동성막대차트)
 
     [🚨 최종 출력 전 필수 확인 (CRITICAL FORMATTING RULES)]
-    글을 생성하기 전 마지막으로 확인하십시오. 아래 규칙을 어기면 당신은 해고됩니다.
     1. 모든 문단은 절대 3문장을 넘지 마십시오. 가급적 1문장이나 2문장마다 마침표(.)를 찍고 반드시 줄바꿈(엔터)을 두 번 쳐서 시각적으로 완전히 띄우십시오.
-    2. 문장 호흡을 짧게 가져가십시오.
-    3. 영어 병기 절대 금지: 한글 뒤에 괄호를 치고 굳이 영어를 병기하는 방식을 절대 사용하지 마십시오. 자연스러운 우리말로만 깔끔하게 쓰십시오.
+    2. 복문(~하고, ~하지만)을 최대한 잘라내어 문장 호흡을 극단적으로 짧게 가져가십시오.
+    3. 영어 병기 절대 금지: '진정한 시장 평균(True Market Mean)'처럼 한글 뒤에 괄호를 치고 굳이 영어를 병기하는 방식을 절대 사용하지 마십시오. 자연스러운 우리말로만 깔끔하게 쓰십시오.
+    4. 컨텍스트는 글에 직접적으로 작성하지 마십시오. 컨텍스트는 최신 뉴스에 대한 날카로운 통찰력을 위한 장기보존 기억입니다.
 
     [출력 포맷 엄수]
     (블로그 포스팅 본문 마크다운으로 쭉 작성...)
@@ -242,7 +242,7 @@ def run_v3_automation():
     if dynamic_chart_path:
         html_chart = f'\n<div className="flex justify-center my-8">\n  <img src="{dynamic_chart_path}" alt="{chart_instruction.get("title", "Market Chart")}" className="rounded-lg shadow-lg border border-gray-200" />\n</div>\n'
         # 결론 직전에 넣기 위해 (임의로 맨 뒤에 붙임)
-        blog_body += f"\n### 파이썬 데이터 시각화\n{html_chart}"
+        blog_body += f"\n### 데이터 시각화\n{html_chart}"
 
     # 6. Frontmatter 조립 & Disclaimer 추가
     summary_text = f"오늘의 글로벌 암호화폐 인사이트 브리핑입니다."
