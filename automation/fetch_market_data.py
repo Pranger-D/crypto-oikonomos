@@ -9,7 +9,7 @@ import os
 import json
 import sys
 import math
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import requests
 from dotenv import load_dotenv
@@ -34,10 +34,12 @@ def safe_value(val):
         return None
     return val
 
+# KST (UTC+9) 설정
+KST = timezone(timedelta(hours=9))
 
-# 어제와 오늘 날짜
-yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-today = datetime.now().strftime("%Y-%m-%d")
+# 어제와 오늘 날짜 (한국 시간 기준)
+yesterday = (datetime.now(KST) - timedelta(days=1)).strftime("%Y-%m-%d")
+today = datetime.now(KST).strftime("%Y-%m-%d")
 
 print(f"🔄 일일 데이터 업데이트: {today}")
 print("=" * 60)
