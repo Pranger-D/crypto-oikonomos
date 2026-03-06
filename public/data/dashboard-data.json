@@ -23465,22 +23465,22 @@
     {
       "date": "2026-03-03",
       "btc": 69312,
-      "btc_dominance": 56.7
+      "btc_dominance": 58.5
     },
     {
       "date": "2026-03-04",
       "btc": 67538,
-      "btc_dominance": 56.7
+      "btc_dominance": 58.5
     },
     {
       "date": "2026-03-05",
       "btc": 72703,
-      "btc_dominance": 57.2
+      "btc_dominance": 59.2
     },
     {
       "date": "2026-03-06",
       "btc": 71413,
-      "btc_dominance": 57.2
+      "btc_dominance": 58.9
     }
   ],
   "macroIndicators": {
@@ -24057,6 +24057,136 @@
         "actual": "57.7",
         "forecast": "52.0",
         "previous": "54.0",
+        "importance": "high"
+      }
+    ],
+    "2026-03-02": [
+      {
+        "country": "United States",
+        "indicator": "S&P Global Manufacturing PMI  (Feb)",
+        "actual": "51.6",
+        "forecast": "51.2",
+        "previous": "51.2",
+        "importance": "high"
+      }
+    ],
+    "2026-03-03": [
+      {
+        "country": "United States",
+        "indicator": "ISM Manufacturing PMI  (Feb)",
+        "actual": "52.4",
+        "forecast": "51.7",
+        "previous": "52.6",
+        "importance": "high"
+      }
+    ],
+    "2026-03-03": [
+      {
+        "country": "United States",
+        "indicator": "ISM Manufacturing Prices  (Feb)",
+        "actual": "70.5",
+        "forecast": "60.6",
+        "previous": "59.0",
+        "importance": "high"
+      }
+    ],
+    "2026-03-04": [
+      {
+        "country": "United States",
+        "indicator": "ADP Nonfarm Employment Change  (Feb)",
+        "actual": "63K",
+        "forecast": "50K",
+        "previous": "11K",
+        "importance": "high"
+      }
+    ],
+    "2026-03-04": [
+      {
+        "country": "United States",
+        "indicator": "S&P Global Services PMI  (Feb)",
+        "actual": "51.7",
+        "forecast": "52.3",
+        "previous": "52.7",
+        "importance": "high"
+      }
+    ],
+    "2026-03-05": [
+      {
+        "country": "United States",
+        "indicator": "ISM Non-Manufacturing PMI  (Feb)",
+        "actual": "56.1",
+        "forecast": "53.5",
+        "previous": "53.8",
+        "importance": "high"
+      }
+    ],
+    "2026-03-05": [
+      {
+        "country": "United States",
+        "indicator": "ISM Non-Manufacturing Prices  (Feb)",
+        "actual": "63.0",
+        "forecast": "68.3",
+        "previous": "66.6",
+        "importance": "high"
+      }
+    ],
+    "2026-03-05": [
+      {
+        "country": "United States",
+        "indicator": "Crude Oil Inventories",
+        "actual": "3.475M",
+        "forecast": "3.000M",
+        "previous": "15.989M",
+        "importance": "high"
+      }
+    ],
+    "2026-03-05": [
+      {
+        "country": "United States",
+        "indicator": "Initial Jobless Claims",
+        "actual": "213K",
+        "forecast": "215K",
+        "previous": "213K",
+        "importance": "high"
+      }
+    ],
+    "2026-03-06": [
+      {
+        "country": "United States",
+        "indicator": "Nonfarm Payrolls  (Feb)",
+        "actual": "",
+        "forecast": "58K",
+        "previous": "130K",
+        "importance": "high"
+      }
+    ],
+    "2026-03-06": [
+      {
+        "country": "United States",
+        "indicator": "Unemployment Rate  (Feb)",
+        "actual": "",
+        "forecast": "4.3%",
+        "previous": "4.3%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-06": [
+      {
+        "country": "United States",
+        "indicator": "Retail Sales (MoM)  (Feb)",
+        "actual": "",
+        "forecast": "-0.3%",
+        "previous": "0.0%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-06": [
+      {
+        "country": "United States",
+        "indicator": "Core Retail Sales (MoM)  (Feb)",
+        "actual": "",
+        "forecast": "0.1%",
+        "previous": "0.0%",
         "importance": "high"
       }
     ]
