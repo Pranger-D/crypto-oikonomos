@@ -24139,9 +24139,139 @@
       {
         "country": "United States",
         "indicator": "Core Retail Sales (MoM)  (Feb)",
-        "actual": "",
+        "actual": "0.0%",
         "forecast": "0.1%",
         "previous": "0.0%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-06": [
+      {
+        "country": "United States",
+        "indicator": "Retail Sales (MoM)  (Feb)",
+        "actual": "-0.2%",
+        "forecast": "-0.3%",
+        "previous": "0.0%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-06": [
+      {
+        "country": "United States",
+        "indicator": "Unemployment Rate  (Feb)",
+        "actual": "4.4%",
+        "forecast": "4.3%",
+        "previous": "4.3%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-06": [
+      {
+        "country": "United States",
+        "indicator": "Nonfarm Payrolls  (Feb)",
+        "actual": "-92K",
+        "forecast": "58K",
+        "previous": "126K",
+        "importance": "high"
+      }
+    ],
+    "2026-03-06": [
+      {
+        "country": "United States",
+        "indicator": "Average Hourly Earnings (MoM)  (Feb)",
+        "actual": "0.4%",
+        "forecast": "0.3%",
+        "previous": "0.4%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-11": [
+      {
+        "country": "United States",
+        "indicator": "CPI (MoM)  (Feb)",
+        "actual": "0.3%",
+        "forecast": "0.3%",
+        "previous": "0.2%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-11": [
+      {
+        "country": "United States",
+        "indicator": "CPI (YoY)  (Feb)",
+        "actual": "2.4%",
+        "forecast": "2.4%",
+        "previous": "2.4%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-11": [
+      {
+        "country": "United States",
+        "indicator": "Core CPI (MoM)  (Feb)",
+        "actual": "0.2%",
+        "forecast": "0.2%",
+        "previous": "0.3%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-11": [
+      {
+        "country": "United States",
+        "indicator": "Crude Oil Inventories",
+        "actual": "3.824M",
+        "forecast": "2.800M",
+        "previous": "3.475M",
+        "importance": "high"
+      }
+    ],
+    "2026-03-12": [
+      {
+        "country": "United States",
+        "indicator": "Initial Jobless Claims",
+        "actual": "213K",
+        "forecast": "214K",
+        "previous": "214K",
+        "importance": "high"
+      }
+    ],
+    "2026-03-13": [
+      {
+        "country": "United States",
+        "indicator": "GDP (QoQ)  (Q4)",
+        "actual": "",
+        "forecast": "1.4%",
+        "previous": "4.4%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-13": [
+      {
+        "country": "United States",
+        "indicator": "Core PCE Price Index (MoM)  (Jan)",
+        "actual": "",
+        "forecast": "0.4%",
+        "previous": "0.4%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-13": [
+      {
+        "country": "United States",
+        "indicator": "Core PCE Price Index (YoY)  (Jan)",
+        "actual": "",
+        "forecast": "3.1%",
+        "previous": "3.0%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-13": [
+      {
+        "country": "United States",
+        "indicator": "JOLTS Job Openings  (Jan)",
+        "actual": "",
+        "forecast": "6.760M",
+        "previous": "6.542M",
         "importance": "high"
       }
     ]
