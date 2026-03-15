@@ -24179,9 +24179,39 @@
       {
         "country": "United States",
         "indicator": "JOLTS Job Openings  (Jan)",
-        "actual": "",
+        "actual": "6.946M",
         "forecast": "6.760M",
         "previous": "6.542M",
+        "importance": "high"
+      }
+    ],
+    "2026-03-13": [
+      {
+        "country": "United States",
+        "indicator": "Core PCE Price Index (MoM)  (Jan)",
+        "actual": "0.4%",
+        "forecast": "0.4%",
+        "previous": "0.4%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-13": [
+      {
+        "country": "United States",
+        "indicator": "Core PCE Price Index (YoY)  (Jan)",
+        "actual": "3.1%",
+        "forecast": "3.1%",
+        "previous": "3.0%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-13": [
+      {
+        "country": "United States",
+        "indicator": "GDP (QoQ)  (Q4)",
+        "actual": "0.7%",
+        "forecast": "1.4%",
+        "previous": "4.4%",
         "importance": "high"
       }
     ]
