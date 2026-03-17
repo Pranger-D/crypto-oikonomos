@@ -65,6 +65,7 @@
     "dist",
     "build",
     ".cache",
-    "public"
+    "public",
+    "automation"
   ]
 }
