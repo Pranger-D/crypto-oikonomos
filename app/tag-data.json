@@ -1,13 +1,15 @@
 {
   "briefing": 12,
-  "bitcoin": 7,
+  "bitcoin": 8,
   "fed": 6,
   "macro": 7,
-  "insight": 1,
+  "insight": 2,
   "fud": 1,
   "fomo": 1,
   "study": 1,
   "liquidity": 1,
+  "ai-fud": 1,
+  "sitrini": 1,
   "multi-author": 1,
   "next-js": 1,
   "feature": 1
