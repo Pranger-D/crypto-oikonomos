@@ -32,13 +32,13 @@ DESKTOP_PATH = get_desktop_path()
 # ==========================================
 # 2. 바탕화면 이미지 -> 프로젝트 이전 및 변환
 # ==========================================
-def process_manual_images(folder_name, target_dir):
+def process_manual_images(folder_name, target_dir, year=None):
     """
     바탕화면 작업 폴더에서 이미지를 가져와 webp로 변환하고,
     변환된 이미지 파일명 리스트를 반환합니다.
     """
-    now = datetime.now()
-    year = now.strftime("%Y")
+    if not year:
+        year = datetime.now().strftime("%Y")
     source_dir = os.path.join(DESKTOP_PATH, "blog", year, folder_name)
     
     processed_images = []
@@ -124,6 +124,16 @@ def generate_blog_content(brain_data, image_list):
     - Macro Context (매크로 지표): {context_str}
     - User Manual News (오늘의 핵심 속보): {vip_news_str}
 
+    [인사이트 도출의 핵심 — 퍼즐 합성 (가장 중요!)]
+    당신은 단순히 각 뉴스를 개별적으로 해석하는 앵무새가 아닙니다.
+    여러 사건이 입력되면 반드시 다음 프로세스를 거치십시오:
+    1. 개별 조각 파악: 오늘 입력된 뉴스/사건들을 각각 파악합니다.
+    2. 숨겨진 연결고리 탐색: "이 사건들이 겉으로는 별개처럼 보이지만, 하나의 일관된 전략이나 구조적 흐름의 일부가 아닌가?"를 자문합니다.
+    3. 메타 서사 도출: 흩어진 조각들을 관통하는 큰 그림(메타 서사)을 하나의 명확한 문장으로 제시합니다.
+    4. 함의 도출: 그 메타 서사가 크립토 시장과 우리의 자산 배분에 어떤 실질적 의미를 갖는지 결론짓습니다.
+    금지: 각 뉴스를 1번 뉴스, 2번 뉴스처럼 나열식으로 해석하지 마십시오.
+    필수: 조각들을 꿰뚫는 하나의 통찰을 반드시 도출하십시오.
+
     [작성 원칙 및 톤앤매너 - 매우 중요!]
     1. **해석의 렌즈:** [당신의 머릿속]에 있는 17개의 렌즈를 한 번에 모두 사용하려 하지 마십시오. [오늘 발생한 뉴스]의 핵심 속성에 가장 정확히 부합하는 1~3개의 렌즈만 예리하게 선택하여 깊게 파고드십시오. 단순히 수치를 나열하지 말고, 이것이 크립토 시장에 어떤 영향을 미치는지(함의)를 도출해야 합니다.
     2. **금지어 (절대 사용 금지):** "컨텍스트에 따르면", "뉴스에 따르면", "제공된 데이터에 의하면" 등 당신이 기계임을 암시하는 서론. 이미 당신의 머릿속 지식을 꺼내어 설명하듯 자연스럽게 묘사하세요.
@@ -192,27 +202,85 @@ def generate_blog_content(brain_data, image_list):
         return None, None
 
 # ==========================================
+# 3.5 자기비평 루프 (Generate → Critique → Refine)
+# ==========================================
+def refine_with_self_critique(blog_body):
+    """초안을 편집장 관점에서 자기비평하고 개선된 최종본을 반환합니다."""
+    print("🔍 [Self-Critique] 편집장이 초안을 검토하고 개선합니다...")
+    
+    critique_prompt = f"""
+    당신은 월스트리트 최상위 매크로/크립토 애널리스트 블로그의 수석 편집장입니다.
+    아래는 방금 작성된 초안입니다. 다음 5가지 기준으로 검토하고, 부족한 부분을 직접 수정하여 개선된 최종본을 출력하세요.
+
+    [검토 기준]
+    1. 메타 서사 존재 여부: 여러 뉴스를 관통하는 큰 그림(숨겨진 연결고리)이 명확히 도출되어 있는가? 단순 뉴스 나열이라면 반드시 메타 서사를 추가하세요.
+    2. 인사이트 깊이: 표면적 해석에 그치지 않고, 독자가 "아, 이렇게 연결되는 거구나!"라고 감탄할 만한 통찰이 있는가?
+    3. 결론의 구체성: "지켜봐야 합니다" 같은 막연한 결론이 아닌, 자산 배분이나 멘탈 관리에 대한 구체적 행동 지침이 있는가?
+    4. 가독성: 문장 호흡이 짧은가? 한 문단이 3문장을 넘지 않는가? 복문이 남아있다면 쪼개세요.
+    5. 논리 비약: 전체 흐름에서 갑자기 뛰어넘는 논리가 없는가?
+
+    [절대 하지 말 것]
+    - 검토 결과를 별도로 출력하지 마세요. 개선된 최종 본문만 출력하세요.
+    - 새로운 섹션이나 구조를 추가하지 마세요. 기존 구조를 유지하되 내용만 개선하세요.
+    - 영어 병기 금지, 이모티콘 금지 규칙을 그대로 유지하세요.
+
+    [초안]
+    {blog_body}
+
+    [출력]
+    개선된 최종 본문만 마크다운으로 출력하세요.
+    """
+    
+    try:
+        response = gemini_client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=critique_prompt
+        )
+        refined = response.text.strip()
+        
+        if len(refined) > 200:  # 유효한 응답인지 최소 확인
+            print("✅ [Self-Critique] 개선 완료!")
+            return refined
+        else:
+            print("⚠️ [Self-Critique] 응답이 너무 짧아 원본 유지")
+            return blog_body
+    except Exception as e:
+        print(f"⚠️ [Self-Critique Error] 자기비평 실패, 원본 유지: {e}")
+        return blog_body
+
+# ==========================================
 # 4. 종합 오케스트레이션
 # ==========================================
 def run_v3_automation():
     print("\n🚀 [V3 Semi-Auto Blogger] 수동 재료 + AI 통찰 파이프라인 시작...\n")
     
-    now = datetime.now()
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("category", nargs="?", default="briefing")
+    parser.add_argument("--date", help="과거 날짜 테스트용 (형식: YYYY-MM-DD)", default=None)
+    args = parser.parse_args()
+
+    if args.date:
+        now = datetime.strptime(args.date, "%Y-%m-%d")
+        print(f"🕒 [Time Override] 테스트 모드: {args.date} 기준으로 실행합니다.")
+    else:
+        now = datetime.now()
+
     year = now.strftime("%Y")
     month_day = now.strftime("%m-%d")
     today_str = now.strftime("%Y-%m-%d")
     
-    category = sys.argv[1] if len(sys.argv) > 1 else "briefing"
+    category = args.category
     folder_name = f"{month_day}-{category}"
     
     target_img_dir = os.path.join(PUBLIC_IMG_DIR, year, folder_name)
     os.makedirs(target_img_dir, exist_ok=True)
     
-    # 1. 수동 이미지 변환 및 가져오기
-    user_images = process_manual_images(folder_name, target_img_dir)
+    # 1. 수동 이미지 변환 및 가져오기 (년도 전달)
+    user_images = process_manual_images(folder_name, target_img_dir, year)
     
-    # 2. 브레인 가동 (컨텍스트 + 수동 뉴스 텍스트 읽기)
-    brain_data = build_brain_data(folder_name)
+    # 2. 브레인 가동 (컨텍스트 + 수동 뉴스 텍스트 읽기, 년도 전달)
+    brain_data = build_brain_data(folder_name, year)
     
     # 안전장치: 뉴스가 없다 하더라도 일단 진행은 가능 (매크로 브리핑만 작성)
     if not brain_data.get("vip_news"):
@@ -223,9 +291,15 @@ def run_v3_automation():
     
     if not blog_body:
          return
+
+    # 3.5 자기비평 루프 (초안 → 편집장 검토 → 개선본)
+    blog_body = refine_with_self_critique(blog_body)
+    
+    if not blog_body:
+         return
          
-    # 4. 차트 생성공장 (V3 Expanded)
-    dynamic_chart_path = generate_and_save_chart(chart_instruction, category=category)
+    # 4. 차트 생성공장 (V3 Expanded, 테스트용 날짜 전달)
+    dynamic_chart_path = generate_and_save_chart(chart_instruction, category=category, target_date=args.date)
     
     # 5. 본문내 플레이스홀더 치환 작업
     import urllib.parse
@@ -268,6 +342,16 @@ _Disclaimer: 이 보고서는 제공된 데이터에 기반한 분석이며, 투
     mdx_content = mdx_content.replace("$", "\\$")
     mdx_filename = f"{today_str}-{category}.mdx" 
     mdx_path = os.path.join(BLOG_DIR, mdx_filename)
+
+    # V3 테스트 환경: 이미 파일이 있다면 파일명에 버전을 붙여 기존 글과 비교 가능하게 함
+    version = 1
+    while os.path.exists(mdx_path):
+        version += 1
+        mdx_filename = f"{today_str}-{category}-v{version}.mdx"
+        mdx_path = os.path.join(BLOG_DIR, mdx_filename)
+        
+    if version > 1:
+        print(f"💡 기존 글이 존재하므로 테스트 버전으로 저장합니다. (-v{version} appended)")
 
     with open(mdx_path, "w", encoding="utf-8") as f:
         f.write(mdx_content)

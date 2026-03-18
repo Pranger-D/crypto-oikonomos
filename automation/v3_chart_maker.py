@@ -204,7 +204,7 @@ def render_volatility(ticker_symbol, title, days=30):
 # ==========================================
 # 3. 브릿지 API (메인에서 호출)
 # ==========================================
-def generate_and_save_chart(chart_instruction, category="briefing"):
+def generate_and_save_chart(chart_instruction, category="briefing", target_date=None):
     print(f"🎨 [Chart Maker V3] AI 지시서 접수: {chart_instruction}")
     
     ctype = chart_instruction.get("type", "asset")
@@ -233,7 +233,11 @@ def generate_and_save_chart(chart_instruction, category="briefing"):
         print("❌ 차트 생성 실패")
         return None
         
-    now = datetime.now()
+    if target_date:
+        now = datetime.strptime(target_date, "%Y-%m-%d")
+    else:
+        now = datetime.now()
+        
     year = now.strftime("%Y")
     month_day = now.strftime("%m-%d")
     folder_name = f"{month_day}-{category}"

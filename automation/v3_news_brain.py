@@ -4,6 +4,7 @@ from datetime import datetime
 from tavily import TavilyClient
 from dotenv import load_dotenv
 from pathlib import Path
+from google import genai
 
 # ==========================================
 # 1. 환경 설정
@@ -12,11 +13,17 @@ env_path = Path(__file__).parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 if not TAVILY_API_KEY:
-    raise ValueError("🚨 API 키 오류: .env 파일이 없거나 키가 비어있습니다.")
+    raise ValueError("🚨 API 키 오류: .env 파일이 없거나 TAVILY_API_KEY가 비어있습니다.")
 
 tavily = TavilyClient(api_key=TAVILY_API_KEY)
+
+# Gemini 클라이언트 (컨텍스트 요약용)
+gemini_client = None
+if GOOGLE_API_KEY:
+    gemini_client = genai.Client(api_key=GOOGLE_API_KEY)
 
 CACHE_FILE = Path(__file__).parent / "context_cache.json"
 
@@ -52,7 +59,6 @@ CONTEXT_SOURCES = {
     "coinshares_funds": "Latest CoinShares Digital Asset Fund Flows Weekly summary",
     
     # 🔥 Part 2: 거장의 뷰 & 투자 철학(멘탈) 레이더
-    "arthur_hayes_essay": "Latest Arthur Hayes BitMEX blog post essay thesis",
     "howard_marks_memo": "Latest Howard Marks Oaktree Capital memo summary",
     "warren_buffett_charlie_munger": "Latest Warren Buffett Berkshire Hathaway shareholder letter core principles"
 }
@@ -67,10 +73,14 @@ def save_cache(cache_data):
     with open(CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(cache_data, f, ensure_ascii=False, indent=4)
 
-def fetch_and_cache_contexts():
+# [사전 요약 기능 폐기 - 원본 보존 정책으로 선회]
+
+def fetch_and_cache_contexts(year=None):
     print("🔍 [Context] 고정 거시 경제 리포트 및 인사이트 확인 중...")
     cache = load_cache()
-    current_year = str(datetime.now().year)
+    if not year:
+        year = str(datetime.now().year)
+    current_year = year
     updated_cache = False
 
     for key, query in CONTEXT_SOURCES.items():
@@ -93,7 +103,7 @@ def fetch_and_cache_contexts():
                         "date": latest_date,
                         "title": latest_article.get("title") or "",
                         "url": latest_article.get("url") or "",
-                        "content": raw_content[:10000]
+                        "content": raw_content[:30000]  # 원문 보존 (상한선 30,000자)
                     }
                     updated_cache = True
                 else:
@@ -112,13 +122,13 @@ def fetch_and_cache_contexts():
 # ==========================================
 # 3. [V3 추가] 바탕화면 수동 뉴스(Text) 추출
 # ==========================================
-def fetch_manual_news(folder_name):
+def fetch_manual_news(folder_name, year=None):
     """
     바탕화면의 특정 폴더(예: Desktop/blog/2026/02-21-briefing) 안의 
     모든 .txt 파일을 읽어 배열로 반환합니다.
     """
-    now = datetime.now()
-    year = now.strftime("%Y")
+    if not year:
+        year = datetime.now().strftime("%Y")
     source_dir = os.path.join(DESKTOP_PATH, "blog", year, folder_name)
     
     print(f"📂 [Local Input] 수동 뉴스 폴더 스캔 중: {source_dir}")
@@ -160,15 +170,15 @@ def fetch_manual_news(folder_name):
 # ==========================================
 # 4. 브레인 통합 실행기
 # ==========================================
-def build_brain_data(folder_name):
+def build_brain_data(folder_name, year=None):
     """
     Auto Blogger(메인 스크립트)에게 컨텍스트와 수동 입력된 뉴스를 공급
     """
     # 1. 고정 컨텍스트 획득 (캐싱)
-    context_data = fetch_and_cache_contexts()
+    context_data = fetch_and_cache_contexts(year)
     
     # 2. 수동 뉴스 속보 (텍스트 파일 읽기)
-    manual_news = fetch_manual_news(folder_name)
+    manual_news = fetch_manual_news(folder_name, year)
     
     return {
         "context": context_data,
