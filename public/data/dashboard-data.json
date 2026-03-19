@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "2026-03-17T16:06:37.171724",
+  "lastUpdated": "2026-03-19T15:55:20.456302",
   "metadata": {
     "startDate": "2013-04-28",
-    "endDate": "2026-03-18",
-    "totalDays": 4706,
+    "endDate": "2026-03-20",
+    "totalDays": 4707,
     "dataSource": {
       "btc": "CoinGecko (historical BTC price & market cap)",
       "macro": "investpy (Investing.com)",
@@ -23541,6 +23541,11 @@
       "date": "2026-03-18",
       "btc": 73969,
       "btc_dominance": 58.5
+    },
+    {
+      "date": "2026-03-20",
+      "btc": 69336,
+      "btc_dominance": 56.2
     }
   ],
   "macroIndicators": {
@@ -24392,6 +24397,13 @@
         "slug": "2026-03-17-insight",
         "title": "인사이트: 트럼프의 초마찰적 화폐 패권 전쟁을 통해 보는 AI와 Crypto의 미래 1부 (2026-03-17)",
         "category": "Insight"
+      }
+    ],
+    "2026-03-19": [
+      {
+        "slug": "2026-03-19-briefing",
+        "title": "시장 브리핑: 오늘의 크립토 브리핑 (2026-03-19)",
+        "category": "Briefing"
       }
     ]
   }
