@@ -24198,9 +24198,7 @@
         "forecast": "1.4%",
         "previous": "4.4%",
         "importance": "high"
-      }
-    ],
-    "2026-03-13": [
+      },
       {
         "country": "United States",
         "indicator": "Core PCE Price Index (MoM)  (Jan)",
@@ -24208,9 +24206,7 @@
         "forecast": "0.4%",
         "previous": "0.4%",
         "importance": "high"
-      }
-    ],
-    "2026-03-13": [
+      },
       {
         "country": "United States",
         "indicator": "Core PCE Price Index (YoY)  (Jan)",
@@ -24218,9 +24214,7 @@
         "forecast": "3.1%",
         "previous": "3.0%",
         "importance": "high"
-      }
-    ],
-    "2026-03-13": [
+      },
       {
         "country": "United States",
         "indicator": "JOLTS Job Openings  (Jan)",
@@ -24238,9 +24232,7 @@
         "forecast": "0.3%",
         "previous": "0.5%",
         "importance": "high"
-      }
-    ],
-    "2026-03-18": [
+      },
       {
         "country": "United States",
         "indicator": "Crude Oil Inventories",
