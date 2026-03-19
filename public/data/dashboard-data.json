@@ -23485,62 +23485,62 @@
     {
       "date": "2026-03-07",
       "btc": 68919,
-      "btc_dominance": 56.9
+      "btc_dominance": 58.5
     },
     {
       "date": "2026-03-08",
       "btc": 67915,
-      "btc_dominance": 56.5
+      "btc_dominance": 58.4
     },
     {
       "date": "2026-03-09",
       "btc": 67204,
-      "btc_dominance": 56.6
+      "btc_dominance": 58.1
     },
     {
       "date": "2026-03-10",
       "btc": 68964,
-      "btc_dominance": 56.8
+      "btc_dominance": 58.6
     },
     {
       "date": "2026-03-11",
       "btc": 71261,
-      "btc_dominance": 57.0
+      "btc_dominance": 58.8
     },
     {
       "date": "2026-03-12",
       "btc": 70042,
-      "btc_dominance": 56.9
+      "btc_dominance": 58.7
     },
     {
       "date": "2026-03-13",
       "btc": 70301,
-      "btc_dominance": 56.8
+      "btc_dominance": 58.7
     },
     {
       "date": "2026-03-14",
       "btc": 72361,
-      "btc_dominance": 57.0
+      "btc_dominance": 58.7
     },
     {
       "date": "2026-03-15",
       "btc": 70701,
-      "btc_dominance": 56.9
+      "btc_dominance": 58.8
     },
     {
       "date": "2026-03-16",
       "btc": 71519,
-      "btc_dominance": 57.0
+      "btc_dominance": 58.8
     },
     {
       "date": "2026-03-17",
       "btc": 73234,
-      "btc_dominance": 56.6
+      "btc_dominance": 58.6
     },
     {
       "date": "2026-03-18",
       "btc": 73969,
-      "btc_dominance": 56.7
+      "btc_dominance": 58.5
     }
   ],
   "macroIndicators": {
@@ -24197,6 +24197,66 @@
         "actual": "0.7%",
         "forecast": "1.4%",
         "previous": "4.4%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-13": [
+      {
+        "country": "United States",
+        "indicator": "Core PCE Price Index (MoM)  (Jan)",
+        "actual": "0.4%",
+        "forecast": "0.4%",
+        "previous": "0.4%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-13": [
+      {
+        "country": "United States",
+        "indicator": "Core PCE Price Index (YoY)  (Jan)",
+        "actual": "3.1%",
+        "forecast": "3.1%",
+        "previous": "3.0%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-13": [
+      {
+        "country": "United States",
+        "indicator": "JOLTS Job Openings  (Jan)",
+        "actual": "6.946M",
+        "forecast": "6.760M",
+        "previous": "6.550M",
+        "importance": "high"
+      }
+    ],
+    "2026-03-18": [
+      {
+        "country": "United States",
+        "indicator": "PPI (MoM)  (Feb)",
+        "actual": "0.7%",
+        "forecast": "0.3%",
+        "previous": "0.5%",
+        "importance": "high"
+      }
+    ],
+    "2026-03-18": [
+      {
+        "country": "United States",
+        "indicator": "Crude Oil Inventories",
+        "actual": "6.156M",
+        "forecast": "-1.500M",
+        "previous": "3.824M",
+        "importance": "high"
+      }
+    ],
+    "2026-03-19": [
+      {
+        "country": "United States",
+        "indicator": "Fed Interest Rate Decision",
+        "actual": "3.75%",
+        "forecast": "3.75%",
+        "previous": "3.75%",
         "importance": "high"
       }
     ]
