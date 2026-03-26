@@ -10,10 +10,10 @@ def get_desktop_path():
     """OneDrive 동기화 여부를 확인하여 실제 바탕화면 경로를 반환"""
     home = os.path.expanduser("~")
     paths = [
-        os.path.join(home, "OneDrive", "바탕 화면"),
-        os.path.join(home, "OneDrive", "Desktop"),
         os.path.join(home, "Desktop"),
-        os.path.join(home, "바탕 화면")
+        os.path.join(home, "바탕 화면"),
+        os.path.join(home, "OneDrive", "Desktop"),
+        os.path.join(home, "OneDrive", "바탕 화면")
     ]
     for p in paths:
         if os.path.exists(p):
@@ -21,7 +21,7 @@ def get_desktop_path():
     return os.path.join(home, "Desktop")
 
 DESKTOP_PATH = get_desktop_path()
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PROJECT_IMG_ROOT = os.path.join(PROJECT_ROOT, "public", "static", "images")
 
 # ---------------------------------------------------------

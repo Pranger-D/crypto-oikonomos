@@ -31,10 +31,10 @@ CACHE_FILE = Path(__file__).parent / "context_cache.json"
 def get_desktop_path():
     home = os.path.expanduser("~")
     paths = [
-        os.path.join(home, "OneDrive", "바탕 화면"),
-        os.path.join(home, "OneDrive", "Desktop"),
         os.path.join(home, "Desktop"),
-        os.path.join(home, "바탕 화면")
+        os.path.join(home, "바탕 화면"),
+        os.path.join(home, "OneDrive", "Desktop"),
+        os.path.join(home, "OneDrive", "바탕 화면")
     ]
     for p in paths:
         if os.path.exists(p):
