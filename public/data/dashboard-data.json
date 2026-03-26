@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "2026-03-25T16:10:33.618877",
+  "lastUpdated": "2026-03-26T16:11:42.592344",
   "metadata": {
     "startDate": "2013-04-28",
-    "endDate": "2026-03-26",
-    "totalDays": 4713,
+    "endDate": "2026-03-27",
+    "totalDays": 4714,
     "dataSource": {
       "btc": "CoinGecko (historical BTC price & market cap)",
       "macro": "investpy (Investing.com)",
@@ -23576,6 +23576,11 @@
       "date": "2026-03-26",
       "btc": 70886,
       "btc_dominance": 58.4
+    },
+    {
+      "date": "2026-03-27",
+      "btc": 68972,
+      "btc_dominance": 56.5
     }
   ],
   "macroIndicators": {
@@ -24286,7 +24291,7 @@
         "previous": "3.75%",
         "importance": "high"
       },
-            {
+      {
         "country": "United States",
         "indicator": "Philadelphia Fed Manufacturing Index  (Mar)",
         "actual": "18.1",
@@ -24294,7 +24299,7 @@
         "previous": "16.3",
         "importance": "high"
       },
-            {
+      {
         "country": "United States",
         "indicator": "Initial Jobless Claims",
         "actual": "205K",
@@ -24477,6 +24482,13 @@
       {
         "slug": "2026-03-19-briefing",
         "title": "시장 브리핑: 오늘의 크립토 브리핑 (2026-03-19)",
+        "category": "Briefing"
+      }
+    ],
+    "2026-03-26": [
+      {
+        "slug": "2026-03-26-briefing",
+        "title": "시장 브리핑: 오늘의 크립토 브리핑 (2026-03-26)",
         "category": "Briefing"
       }
     ]
