@@ -23545,37 +23545,37 @@
     {
       "date": "2026-03-20",
       "btc": 69336,
-      "btc_dominance": 56.2
+      "btc_dominance": 58.2
     },
     {
       "date": "2026-03-21",
       "btc": 69894,
-      "btc_dominance": 56.4
+      "btc_dominance": 58.4
     },
     {
       "date": "2026-03-22",
       "btc": 70579,
-      "btc_dominance": 56.5
+      "btc_dominance": 58.2
     },
     {
       "date": "2026-03-23",
       "btc": 68857,
-      "btc_dominance": 56.3
+      "btc_dominance": 58.1
     },
     {
       "date": "2026-03-24",
       "btc": 70123,
-      "btc_dominance": 56.5
+      "btc_dominance": 58.4
     },
     {
       "date": "2026-03-25",
       "btc": 69807,
-      "btc_dominance": 56.4
+      "btc_dominance": 58.4
     },
     {
       "date": "2026-03-26",
       "btc": 70886,
-      "btc_dominance": 56.4
+      "btc_dominance": 58.4
     }
   ],
   "macroIndicators": {
@@ -24284,6 +24284,50 @@
         "actual": "3.75%",
         "forecast": "3.75%",
         "previous": "3.75%",
+        "importance": "high"
+      },
+            {
+        "country": "United States",
+        "indicator": "Philadelphia Fed Manufacturing Index  (Mar)",
+        "actual": "18.1",
+        "forecast": "8.3",
+        "previous": "16.3",
+        "importance": "high"
+      },
+            {
+        "country": "United States",
+        "indicator": "Initial Jobless Claims",
+        "actual": "205K",
+        "forecast": "215K",
+        "previous": "213K",
+        "importance": "high"
+      }
+    ],
+    "2026-03-24": [
+      {
+        "country": "United States",
+        "indicator": "S&P Global Manufacturing PMI  (Mar)",
+        "actual": "52.4",
+        "forecast": "51.5",
+        "previous": "51.6",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "S&P Global Services PMI  (Mar)",
+        "actual": "51.1",
+        "forecast": "52.0",
+        "previous": "51.7",
+        "importance": "high"
+      }
+    ],
+    "2026-03-25": [
+      {
+        "country": "United States",
+        "indicator": "Crude Oil Inventories",
+        "actual": "6.926M",
+        "forecast": "-1.300M",
+        "previous": "6.156M",
         "importance": "high"
       }
     ]
