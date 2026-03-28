@@ -23580,12 +23580,12 @@
     {
       "date": "2026-03-27",
       "btc": 68972,
-      "btc_dominance": 56.5
+      "btc_dominance": 58.3
     },
     {
       "date": "2026-03-28",
       "btc": 66289,
-      "btc_dominance": 55.9
+      "btc_dominance": 58.0
     }
   ],
   "macroIndicators": {
@@ -24338,6 +24338,16 @@
         "actual": "6.926M",
         "forecast": "-1.300M",
         "previous": "6.156M",
+        "importance": "high"
+      }
+    ],
+    "2026-03-26": [
+      {
+        "country": "United States",
+        "indicator": "Initial Jobless Claims",
+        "actual": "210K",
+        "forecast": "211K",
+        "previous": "205K",
         "importance": "high"
       }
     ]
