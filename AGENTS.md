@@ -44,6 +44,7 @@ summary: 한 줄 요약
 ```
 
 > ⚠️ **주의사항**:
+>
 > - 반드시 `---`로 열고, `---`로 닫아야 합니다 (닫는 `---` 누락 시 Contentlayer가 파일 전체를 무시)
 > - `title`에 작은따옴표(`'`)가 포함된 경우 **큰따옴표(`"`)로 감싸야** 합니다
 >   - 잘못된 예: `title: '트럼프의 '전략''`
@@ -53,11 +54,11 @@ summary: 한 줄 요약
 
 홈화면의 Curated Collections에 나타나려면 태그가 아래 중 하나여야 합니다:
 
-| 태그 | 설명 |
-|------|------|
-| `Briefing` | 시장 브리핑 |
-| `Insight` | 인사이트 분석 |
-| `Study` | 학습 콘텐츠 |
+| 태그       | 설명          |
+| ---------- | ------------- |
+| `Briefing` | 시장 브리핑   |
+| `Insight`  | 인사이트 분석 |
+| `Study`    | 학습 콘텐츠   |
 
 > 태그 목록은 `app/Main.tsx`의 `TARGET_CATEGORIES` 배열에서 관리됩니다.
 
@@ -92,9 +93,7 @@ public/static/images/YYYY/MM-DD-{category}/{이미지명}.webp
     height={450}
     className="mx-auto rounded-xl shadow-lg"
   />
-  <figcaption className="mt-4 text-sm text-gray-500">
-    그림 캡션
-  </figcaption>
+  <figcaption className="mt-4 text-sm text-gray-500">그림 캡션</figcaption>
 </figure>
 ```
 
@@ -183,20 +182,20 @@ python v3_auto_blogger.py study      # 스터디 카테고리
 
 AI가 JSON 지시서에 `type` 값을 지정하면 해당 차트가 생성됩니다:
 
-| type | 설명 | 주요 파라미터 |
-|------|------|----------------|
-| `asset` | 단일 자산 가격 선차트 (기본값) | `ticker`, `title` |
-| `compare` | 두 자산 상대 수익률 비교 | `tickers: [T1, T2]`, `aliases: [N1, N2]`, `title` |
-| `ma` | 이동평균선 (20일, 50일) | `ticker`, `title` |
-| `volatility` | 일일 변동폭 막대차트 | `ticker`, `title` |
+| type         | 설명                           | 주요 파라미터                                     |
+| ------------ | ------------------------------ | ------------------------------------------------- |
+| `asset`      | 단일 자산 가격 선차트 (기본값) | `ticker`, `title`                                 |
+| `compare`    | 두 자산 상대 수익률 비교       | `tickers: [T1, T2]`, `aliases: [N1, N2]`, `title` |
+| `ma`         | 이동평균선 (20일, 50일)        | `ticker`, `title`                                 |
+| `volatility` | 일일 변동폭 막대차트           | `ticker`, `title`                                 |
 
 ### AI에 주입되는 핵심 참고 파일
 
-| 파일 | 역할 | 수정 권장 여부 |
-|------|------|----------------|
-| `data/core_insights.md` | AI의 투자 철학·렌즈 17개 | ✅ 관점 업데이트 시 수정 |
-| `data/expert_writing_examples.md` | Few-Shot 글쓰기 예시 | ✅ 품질 향상 시 예시 추가 |
-| `automation/context_cache.json` | Tavily 컨텍스트 캐시 | ❌ 자동 관리 (수동 삭제 시 재수집) |
+| 파일                              | 역할                     | 수정 권장 여부                     |
+| --------------------------------- | ------------------------ | ---------------------------------- |
+| `data/core_insights.md`           | AI의 투자 철학·렌즈 16개 | ✅ 관점 업데이트 시 수정           |
+| `data/expert_writing_examples.md` | Few-Shot 글쓰기 예시     | ✅ 품질 향상 시 예시 추가          |
+| `automation/context_cache.json`   | Tavily 컨텍스트 캐시     | ❌ 자동 관리 (수동 삭제 시 재수집) |
 
 ### 생성 결과물 후처리
 
@@ -229,10 +228,10 @@ AI가 이 프로젝트에서 작업을 시작하기 전에 반드시 확인하�
 
 아래 파일들은 `.gitignore`에 의해 git에서 제외되므로, **기존 노트북에서 직접 복사**해야 합니다.
 
-| 파일 경로 | 용도 | 필수 여부 |
-|-----------|------|-----------|
-| `automation/.env` | Python 자동화 API 키 모음 | ✅ 필수 |
-| `.env.local` (있을 경우) | Next.js 로컬 환경변수 (댓글/뉴스레터 연동 시) | 선택 |
+| 파일 경로                | 용도                                          | 필수 여부 |
+| ------------------------ | --------------------------------------------- | --------- |
+| `automation/.env`        | Python 자동화 API 키 모음                     | ✅ 필수   |
+| `.env.local` (있을 경우) | Next.js 로컬 환경변수 (댓글/뉴스레터 연동 시) | 선택      |
 
 #### `automation/.env` 내용 (아래 키를 새 파일에 채워야 함)
 
@@ -243,6 +242,7 @@ FRED_API_KEY=...         # FRED 거시지표 데이터
 ```
 
 > 키를 분실했다면 각 서비스 대시보드에서 재발급:
+>
 > - Tavily: https://app.tavily.com
 > - Google AI Studio: https://aistudio.google.com/apikey
 > - FRED: https://fred.stlouisfed.org/docs/api/api_key.html
@@ -298,15 +298,15 @@ pip install -r requirements.txt
 
 #### 주요 패키지 목록 (`automation/requirements.txt`)
 
-| 패키지 | 용도 |
-|--------|------|
-| `google-generativeai` | Gemini AI 자동 블로깅 (v3_auto_blogger) |
-| `tavily-python` | 매크로 뉴스 검색 & 캐싱 (v3_news_brain) |
-| `matplotlib` | 동적 차트 렌더링 (v3_chart_maker) |
-| `yfinance` | 실시간 가격 데이터 수집 (v3_chart_maker) |
-| `pillow` | 이미지 webp 변환 (v3_auto_blogger) |
-| `requests` / `beautifulsoup4` | 크롤링 |
-| `python-dotenv` | `.env` 파일 로드 |
+| 패키지                        | 용도                                     |
+| ----------------------------- | ---------------------------------------- |
+| `google-generativeai`         | Gemini AI 자동 블로깅 (v3_auto_blogger)  |
+| `tavily-python`               | 매크로 뉴스 검색 & 캐싱 (v3_news_brain)  |
+| `matplotlib`                  | 동적 차트 렌더링 (v3_chart_maker)        |
+| `yfinance`                    | 실시간 가격 데이터 수집 (v3_chart_maker) |
+| `pillow`                      | 이미지 webp 변환 (v3_auto_blogger)       |
+| `requests` / `beautifulsoup4` | 크롤링                                   |
+| `python-dotenv`               | `.env` 파일 로드                         |
 
 ---
 

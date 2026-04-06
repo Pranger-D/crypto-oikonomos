@@ -23590,47 +23590,47 @@
     {
       "date": "2026-03-29",
       "btc": 66990,
-      "btc_dominance": 56.0
+      "btc_dominance": 57.9
     },
     {
       "date": "2026-03-30",
       "btc": 66362,
-      "btc_dominance": 56.0
+      "btc_dominance": 57.9
     },
     {
       "date": "2026-03-31",
       "btc": 67432,
-      "btc_dominance": 56.0
+      "btc_dominance": 58.0
     },
     {
       "date": "2026-04-01",
       "btc": 66829,
-      "btc_dominance": 55.9
+      "btc_dominance": 58.2
     },
     {
       "date": "2026-04-02",
       "btc": 68753,
-      "btc_dominance": 56.3
+      "btc_dominance": 58.0
     },
     {
       "date": "2026-04-03",
       "btc": 66806,
-      "btc_dominance": 56.3
+      "btc_dominance": 58.1
     },
     {
       "date": "2026-04-04",
       "btc": 66868,
-      "btc_dominance": 56.1
+      "btc_dominance": 58.1
     },
     {
       "date": "2026-04-05",
       "btc": 67326,
-      "btc_dominance": 56.2
+      "btc_dominance": 58.1
     },
     {
       "date": "2026-04-06",
       "btc": 67570,
-      "btc_dominance": 56.7
+      "btc_dominance": 58.5
     }
   ],
   "macroIndicators": {
@@ -24361,7 +24361,7 @@
     "2026-03-24": [
       {
         "country": "United States",
-        "indicator": "S&P Global Manufacturing PMI  (Mar)",
+        "indicator": "S&P Global Manufacturing PMI  (Mar) P",
         "actual": "52.4",
         "forecast": "51.5",
         "previous": "51.6",
@@ -24369,7 +24369,7 @@
       },
       {
         "country": "United States",
-        "indicator": "S&P Global Services PMI  (Mar)",
+        "indicator": "S&P Global Services PMI  (Mar) P",
         "actual": "51.1",
         "forecast": "52.0",
         "previous": "51.7",
@@ -24393,6 +24393,100 @@
         "actual": "210K",
         "forecast": "211K",
         "previous": "205K",
+        "importance": "high"
+      }
+    ],
+    "2026-04-01": [
+      {
+        "country": "United States",
+        "indicator": "ADP Nonfarm Employment Change  (Mar)",
+        "actual": "62K",
+        "forecast": "41K",
+        "previous": "66K",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Retail Sales (MoM)  (Feb)",
+        "actual": "0.6%",
+        "forecast": "0.5%",
+        "previous": "-0.1%",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Core Retail Sales (MoM)  (Feb)",
+        "actual": "0.5%",
+        "forecast": "0.3%",
+        "previous": "0.0%",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "S&P Global Manufacturing PMI  (Mar)",
+        "actual": "52.3",
+        "forecast": "52.4",
+        "previous": "51.6",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "ISM Manufacturing PMI  (Mar)",
+        "actual": "52.7",
+        "forecast": "52.3",
+        "previous": "52.4",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "ISM Manufacturing Prices  (Mar)",
+        "actual": "78.3",
+        "forecast": "74.0",
+        "previous": "70.5",
+        "importance": "high"
+      }
+    ],
+    "2026-04-02": [
+      {
+        "country": "United States",
+        "indicator": "Initial Jobless Claims",
+        "actual": "202K",
+        "forecast": "212K",
+        "previous": "211K",
+        "importance": "high"
+      }
+    ],
+    "2026-04-03": [
+      {
+        "country": "United States",
+        "indicator": "Average Hourly Earnings (MoM)  (Mar)",
+        "actual": "0.2%",
+        "forecast": "0.3%",
+        "previous": "0.4%",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Nonfarm Payrolls  (Mar)",
+        "actual": "178K",
+        "forecast": "65K",
+        "previous": "-133K",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Unemployment Rate  (Mar)",
+        "actual": "4.3%",
+        "forecast": "4.4%",
+        "previous": "4.4%",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "S&P Global Services PMI  (Mar)",
+        "actual": "49.8",
+        "forecast": "51.1",
+        "previous": "51.7",
         "importance": "high"
       }
     ]
