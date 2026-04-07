@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "2026-04-06T15:47:57.372897",
+  "lastUpdated": "2026-04-07T16:10:24.029236",
   "metadata": {
     "startDate": "2013-04-28",
-    "endDate": "2026-04-07",
-    "totalDays": 4725,
+    "endDate": "2026-04-08",
+    "totalDays": 4726,
     "dataSource": {
       "btc": "CoinGecko (historical BTC price & market cap)",
       "macro": "investpy (Investing.com)",
@@ -23636,6 +23636,11 @@
       "date": "2026-04-07",
       "btc": 69805,
       "btc_dominance": 58.5
+    },
+    {
+      "date": "2026-04-08",
+      "btc": 68174,
+      "btc_dominance": 56.6
     }
   ],
   "macroIndicators": {
@@ -24666,6 +24671,13 @@
         "slug": "2026-04-06-briefing",
         "title": "시장 브리핑: 오늘의 크립토 브리핑 (2026-04-06)",
         "category": "Briefing"
+      }
+    ],
+    "2026-04-07": [
+      {
+        "slug": "2026-04-07-insight",
+        "title": "인사이트: 트럼프의 초마찰적 화폐 패권 전쟁을 통해 보는 스테이블코인의 미래 2부 (2026-04-07)",
+        "category": "Insight"
       }
     ]
   }
