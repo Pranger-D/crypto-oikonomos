@@ -180,7 +180,7 @@ def generate_blog_content(brain_data, image_list):
     
     try:
         response = gemini_client.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-3-flash-preview",
             contents=prompt
         )
         text = response.text
@@ -239,7 +239,7 @@ def refine_with_self_critique(blog_body):
     
     try:
         response = gemini_client.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-3-flash-preview",
             contents=critique_prompt
         )
         refined = response.text.strip()

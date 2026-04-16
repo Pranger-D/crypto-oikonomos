@@ -23645,42 +23645,42 @@
     {
       "date": "2026-04-09",
       "btc": 71324,
-      "btc_dominance": 56.9
+      "btc_dominance": 58.8
     },
     {
       "date": "2026-04-10",
       "btc": 72221,
-      "btc_dominance": 57.1
+      "btc_dominance": 59.0
     },
     {
       "date": "2026-04-11",
       "btc": 72589,
-      "btc_dominance": 57.2
+      "btc_dominance": 59.1
     },
     {
       "date": "2026-04-12",
       "btc": 72808,
-      "btc_dominance": 57.2
+      "btc_dominance": 59.0
     },
     {
       "date": "2026-04-13",
       "btc": 70790,
-      "btc_dominance": 56.9
+      "btc_dominance": 58.8
     },
     {
       "date": "2026-04-14",
       "btc": 72015,
-      "btc_dominance": 57.2
+      "btc_dominance": 59.1
     },
     {
       "date": "2026-04-15",
       "btc": 75528,
-      "btc_dominance": 57.5
+      "btc_dominance": 59.2
     },
     {
       "date": "2026-04-16",
       "btc": 73946,
-      "btc_dominance": 57.2
+      "btc_dominance": 59.2
     }
   ],
   "macroIndicators": {
@@ -24547,6 +24547,76 @@
         "actual": "54.0",
         "forecast": "54.8",
         "previous": "56.1",
+        "importance": "high"
+      }
+    ],
+    "2026-04-09": [
+      {
+        "country": "United States",
+        "indicator": "Core PCE Price Index (MoM)  (Feb)",
+        "actual": "0.4%",
+        "forecast": "0.4%",
+        "previous": "0.4%",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Core PCE Price Index (YoY)  (Feb)",
+        "actual": "3.0",
+        "forecast": "3.0",
+        "previous": "3.1",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "GDP (QoQ)  (Q4)",
+        "actual": "0.5%",
+        "forecast": "0.7%",
+        "previous": "4.4%",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Initial Jobless Claims",
+        "actual": "219K",
+        "forecast": "210K",
+        "previous": "203K",
+        "importance": "high"
+      }
+    ],
+    "2026-04-10": [
+      {
+        "country": "United States",
+        "indicator": "CPI (MoM)  (Mar)",
+        "actual": "0.9%",
+        "forecast": "1.0%",
+        "previous": "0.3%",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "Core CPI (MoM)  (Mar)",
+        "actual": "0.2%",
+        "forecast": "0.3%",
+        "previous": "0.2%",
+        "importance": "high"
+      },
+      {
+        "country": "United States",
+        "indicator": "CPI (YoY)  (Mar)",
+        "actual": "3.3%",
+        "forecast": "3.4%",
+        "previous": "2.4%",
+        "importance": "high"
+      }
+    ],
+    "2026-04-14": [
+      {
+        "country": "United States",
+        "indicator": "PPI (MoM)  (Mar)",
+        "actual": "0.5%",
+        "forecast": "1.1%",
+        "previous": "0.5%",
         "importance": "high"
       }
     ]
