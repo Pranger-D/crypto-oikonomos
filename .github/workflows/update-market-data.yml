@@ -1,5 +1,8 @@
 name: Update Market Data
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   schedule:
     # 매일 UTC 15:00 (한국 시간 자정)
