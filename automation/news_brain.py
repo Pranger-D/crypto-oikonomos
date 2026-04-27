@@ -160,12 +160,13 @@ def search_by_keywords(keywords: list) -> dict:
     print(f"🔍 [Search] Tavily 키워드 검색 시작 ({len(keywords)}개 키워드)...")
     results = {}
 
-    for kw in keywords:
+    for idx, kw in enumerate(keywords):
         try:
             print(f"   -> 검색 중: '{kw}'")
+            # 핵심 키워드(상위 2개)는 max_results=5, 나머지는 2로 가중치 적용
             res = tavily.search(
                 query=kw,
-                max_results=3,
+                max_results=5 if idx < 2 else 2,
                 include_raw_content=True,  # 전문 포함 요청
             )
             items = []
@@ -276,14 +277,22 @@ def apply_smart_trim(search_results: dict) -> dict:
     raw_content가 없을 경우 Search의 짧은 content(요약)를 사용.
     """
     trimmed = {}
+    kw_idx = 0
     for kw, items in search_results.items():
         trimmed_items = []
-        for item in items:
+        for item_idx, item in enumerate(items):
             raw = item.get("raw_content", "")
             fallback = item.get("content", "")
 
+            # 핵심 키워드(상위 2개)의 최상단 기사 1개는 10,000자까지 넓게 트림 (전문 활용)
+            # 나머지는 토큰 예산을 위해 3,000자로 트림
+            if kw_idx < 2 and item_idx == 0:
+                trim_limit = 10000
+            else:
+                trim_limit = 3000
+
             if raw:
-                final_content = smart_trim(raw, kw)
+                final_content = smart_trim(raw, kw, max_chars=trim_limit)
             else:
                 # Extract 실패 케이스: 짧은 요약이라도 사용
                 final_content = fallback
@@ -294,6 +303,7 @@ def apply_smart_trim(search_results: dict) -> dict:
                 "content": final_content,
             })
         trimmed[kw] = trimmed_items
+        kw_idx += 1
     return trimmed
 
 
