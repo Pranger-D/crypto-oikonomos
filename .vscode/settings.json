@@ -13,6 +13,6 @@
     "tavily"
   ],
   // ${workspaceFolder}를 빼고 마침표(.) 하나만 찍어보세요
-  "python.defaultInterpreterPath": "D:\\Project\\crypto-oikonomos\\automation\\venv\\Scripts\\python.exe",
+  "python.defaultInterpreterPath": "./automation/venv/Scripts/python.exe",
   "python.analysis.extraPaths": ["./automation"]
 }
