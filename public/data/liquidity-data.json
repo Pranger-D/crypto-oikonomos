@@ -33,7 +33,7 @@
       "value": -0.03
     }
   },
-  "last_updated": "2026-06-06",
+  "last_updated": "2026-06-07",
   "history": [
     {
       "date": "2021-07-28",
@@ -19416,14 +19416,14 @@
     },
     {
       "date": "2026-05-25",
-      "SOFR": 3.55,
+      "SOFR": 3.62,
       "IORB": 3.65,
       "TGA": 875713.0,
       "RESERVES": 3013902.0,
       "SRF": 3.75,
-      "ON_RRP": 0.965,
+      "ON_RRP": 0.761,
       "TOTAL_ASSETS": 6711.495,
-      "SPREAD_SOFR_IORB": -0.1
+      "SPREAD_SOFR_IORB": -0.03
     },
     {
       "date": "2026-05-26",
