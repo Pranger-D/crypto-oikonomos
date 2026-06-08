@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "2026-06-07T16:16:34.277550",
+  "lastUpdated": "2026-06-08T17:53:05.440962",
   "metadata": {
     "startDate": "2013-04-28",
-    "endDate": "2026-06-08",
-    "totalDays": 4786,
+    "endDate": "2026-06-09",
+    "totalDays": 4787,
     "dataSource": {
       "btc": "CoinGecko (historical BTC price & market cap)",
       "macro": "investpy (Investing.com)",
@@ -23941,6 +23941,11 @@
       "date": "2026-06-08",
       "btc": 62112,
       "btc_dominance": 55.7
+    },
+    {
+      "date": "2026-06-09",
+      "btc": 63448,
+      "btc_dominance": 56.2
     }
   ],
   "macroIndicators": {
