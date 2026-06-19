@@ -1,39 +1,39 @@
 {
   "latest_snapshot": {
     "SOFR": {
-      "date": "2026-06-18",
+      "date": "2026-06-22",
       "value": 3.63
     },
     "IORB": {
-      "date": "2026-06-18",
+      "date": "2026-06-22",
       "value": 3.65
     },
     "TGA": {
-      "date": "2026-06-18",
-      "value": 828122.0
+      "date": "2026-06-22",
+      "value": 880713.0
     },
     "RESERVES": {
-      "date": "2026-06-18",
-      "value": 3080723.0
+      "date": "2026-06-22",
+      "value": 3033444.0
     },
     "SRF": {
-      "date": "2026-06-18",
+      "date": "2026-06-22",
       "value": 3.75
     },
     "ON_RRP": {
-      "date": "2026-06-18",
-      "value": 6.828
+      "date": "2026-06-22",
+      "value": 0.251
     },
     "TOTAL_ASSETS": {
-      "date": "2026-06-18",
-      "value": 6725.397
+      "date": "2026-06-22",
+      "value": 6736.424
     },
     "SPREAD_SOFR_IORB": {
-      "date": "2026-06-18",
+      "date": "2026-06-22",
       "value": -0.02
     }
   },
-  "last_updated": "2026-06-18",
+  "last_updated": "2026-06-19",
   "history": [
     {
       "date": "2021-07-28",
@@ -19528,66 +19528,66 @@
       "date": "2026-06-04",
       "SOFR": 3.62,
       "IORB": 3.65,
-      "TGA": 875713.0,
-      "RESERVES": 3013902.0,
+      "TGA": 828122.0,
+      "RESERVES": 3080723.0,
       "SRF": 3.75,
       "ON_RRP": 1.122,
-      "TOTAL_ASSETS": 6711.495,
+      "TOTAL_ASSETS": 6725.397,
       "SPREAD_SOFR_IORB": -0.03
     },
     {
       "date": "2026-06-05",
       "SOFR": 3.63,
       "IORB": 3.65,
-      "TGA": 875713.0,
-      "RESERVES": 3013902.0,
+      "TGA": 828122.0,
+      "RESERVES": 3080723.0,
       "SRF": 3.75,
       "ON_RRP": 0.761,
-      "TOTAL_ASSETS": 6711.495,
+      "TOTAL_ASSETS": 6725.397,
       "SPREAD_SOFR_IORB": -0.02
     },
     {
       "date": "2026-06-06",
       "SOFR": 3.63,
       "IORB": 3.65,
-      "TGA": 875713.0,
-      "RESERVES": 3013902.0,
+      "TGA": 828122.0,
+      "RESERVES": 3080723.0,
       "SRF": 3.75,
       "ON_RRP": 0.761,
-      "TOTAL_ASSETS": 6711.495,
+      "TOTAL_ASSETS": 6725.397,
       "SPREAD_SOFR_IORB": -0.02
     },
     {
       "date": "2026-06-07",
       "SOFR": 3.63,
       "IORB": 3.65,
-      "TGA": 875713.0,
-      "RESERVES": 3013902.0,
+      "TGA": 828122.0,
+      "RESERVES": 3080723.0,
       "SRF": 3.75,
       "ON_RRP": 0.761,
-      "TOTAL_ASSETS": 6711.495,
+      "TOTAL_ASSETS": 6725.397,
       "SPREAD_SOFR_IORB": -0.02
     },
     {
       "date": "2026-06-08",
       "SOFR": 3.63,
       "IORB": 3.65,
-      "TGA": 875713.0,
-      "RESERVES": 3013902.0,
+      "TGA": 828122.0,
+      "RESERVES": 3080723.0,
       "SRF": 3.75,
       "ON_RRP": 1.832,
-      "TOTAL_ASSETS": 6711.495,
+      "TOTAL_ASSETS": 6725.397,
       "SPREAD_SOFR_IORB": -0.02
     },
     {
       "date": "2026-06-09",
       "SOFR": 3.6,
       "IORB": 3.65,
-      "TGA": 875713.0,
-      "RESERVES": 3013902.0,
+      "TGA": 828122.0,
+      "RESERVES": 3080723.0,
       "SRF": 3.75,
       "ON_RRP": 0.577,
-      "TOTAL_ASSETS": 6711.495,
+      "TOTAL_ASSETS": 6725.397,
       "SPREAD_SOFR_IORB": -0.05
     },
     {
@@ -19671,22 +19671,66 @@
       "date": "2026-06-17",
       "SOFR": 3.63,
       "IORB": 3.65,
-      "TGA": 828122.0,
-      "RESERVES": 3080723.0,
+      "TGA": 880713.0,
+      "RESERVES": 3033444.0,
       "SRF": 3.75,
       "ON_RRP": 6.828,
-      "TOTAL_ASSETS": 6725.397,
+      "TOTAL_ASSETS": 6736.424,
       "SPREAD_SOFR_IORB": -0.02
     },
     {
       "date": "2026-06-18",
       "SOFR": 3.63,
       "IORB": 3.65,
-      "TGA": 828122.0,
-      "RESERVES": 3080723.0,
+      "TGA": 880713.0,
+      "RESERVES": 3033444.0,
       "SRF": 3.75,
-      "ON_RRP": 6.828,
-      "TOTAL_ASSETS": 6725.397,
+      "ON_RRP": 0.251,
+      "TOTAL_ASSETS": 6736.424,
+      "SPREAD_SOFR_IORB": -0.02
+    },
+    {
+      "date": "2026-06-19",
+      "SOFR": 3.63,
+      "IORB": 3.65,
+      "TGA": 880713.0,
+      "RESERVES": 3033444.0,
+      "SRF": 3.75,
+      "ON_RRP": 0.251,
+      "TOTAL_ASSETS": 6736.424,
+      "SPREAD_SOFR_IORB": -0.02
+    },
+    {
+      "date": "2026-06-20",
+      "SOFR": 3.63,
+      "IORB": 3.65,
+      "TGA": 880713.0,
+      "RESERVES": 3033444.0,
+      "SRF": 3.75,
+      "ON_RRP": 0.251,
+      "TOTAL_ASSETS": 6736.424,
+      "SPREAD_SOFR_IORB": -0.02
+    },
+    {
+      "date": "2026-06-21",
+      "SOFR": 3.63,
+      "IORB": 3.65,
+      "TGA": 880713.0,
+      "RESERVES": 3033444.0,
+      "SRF": 3.75,
+      "ON_RRP": 0.251,
+      "TOTAL_ASSETS": 6736.424,
+      "SPREAD_SOFR_IORB": -0.02
+    },
+    {
+      "date": "2026-06-22",
+      "SOFR": 3.63,
+      "IORB": 3.65,
+      "TGA": 880713.0,
+      "RESERVES": 3033444.0,
+      "SRF": 3.75,
+      "ON_RRP": 0.251,
+      "TOTAL_ASSETS": 6736.424,
       "SPREAD_SOFR_IORB": -0.02
     }
   ]
