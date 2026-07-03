@@ -1,6 +1,6 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.enablePromptUseWorkspaceSdk": true,
   "cSpell.words": [
     "CFTC",
     "Dominence",
@@ -12,7 +12,8 @@
     "Oikonomos",
     "tavily"
   ],
-  // ${workspaceFolder}를 빼고 마침표(.) 하나만 찍어보세요
-  "python.defaultInterpreterPath": "./automation/venv/Scripts/python.exe",
-  "python.analysis.extraPaths": ["./automation"]
+  "python.defaultInterpreterPath": "D:\\Project\\crypto-oikonomos\\automation\\venv\\Scripts\\python.exe",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}\\automation"
+  ]
 }
