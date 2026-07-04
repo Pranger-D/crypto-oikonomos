@@ -33,7 +33,7 @@
       "value": 0.01
     }
   },
-  "last_updated": "2026-07-03",
+  "last_updated": "2026-07-04",
   "history": [
     {
       "date": "2021-07-28",
@@ -19726,22 +19726,22 @@
       "date": "2026-06-22",
       "SOFR": 3.61,
       "IORB": 3.65,
-      "TGA": 918696.0,
-      "RESERVES": 2951416.0,
+      "TGA": 880237.0,
+      "RESERVES": 2966897.0,
       "SRF": 3.75,
       "ON_RRP": 3.925,
-      "TOTAL_ASSETS": 6735.645,
+      "TOTAL_ASSETS": 6724.564,
       "SPREAD_SOFR_IORB": -0.04
     },
     {
       "date": "2026-06-23",
       "SOFR": 3.62,
       "IORB": 3.65,
-      "TGA": 918696.0,
-      "RESERVES": 2951416.0,
+      "TGA": 880237.0,
+      "RESERVES": 2966897.0,
       "SRF": 3.75,
       "ON_RRP": 6.484,
-      "TOTAL_ASSETS": 6735.645,
+      "TOTAL_ASSETS": 6724.564,
       "SPREAD_SOFR_IORB": -0.03
     },
     {
